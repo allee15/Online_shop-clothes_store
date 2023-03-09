@@ -1,5 +1,7 @@
 package model;
 
+import Business.Store;
+
 public class Admin extends User {
 
     private String role;

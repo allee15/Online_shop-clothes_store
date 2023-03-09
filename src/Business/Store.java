@@ -1,4 +1,9 @@
-package model;
+package Business;
+
+import model.Admin;
+import model.Category;
+import model.Customer;
+import model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
