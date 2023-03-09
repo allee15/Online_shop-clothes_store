@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Customer extends User{
     private ArrayList<Product> cart;
+
     private String phone;
     private String address;
 
@@ -26,10 +27,11 @@ public class Customer extends User{
     }
 
 
-    public Customer(String phone, String address){
-        super();
+    public Customer(String userName, String password, String email,String phone, String address){
+        super(userName,password,email);
         this.phone=phone;
         this.address=address;
+        this.cart=new ArrayList<Product>();
     }
 
     public void addItemToCart(Product product) {
@@ -39,6 +41,8 @@ public class Customer extends User{
     public void removeItemFromCart(Product product) {
         cart.remove(product);
     }
+
+
 
     public void checkOut() {
         // process payment and shipping information

@@ -23,7 +23,14 @@ public class Product {
 
     private Integer quantity;
 
-    private List<Rating> rantings;
+
+
+
+    private List<Rating> ratings;
+
+
+
+    private Category category;
     public void setQuantity(Integer quantity){this.quantity=quantity;}
     public void setId(Integer id) {
         this.id = id;
@@ -44,6 +51,14 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     public Boolean getDisponibility() {
         return disponibility;
@@ -67,14 +82,25 @@ public class Product {
         return price;
     }
 
+    public List<Rating> getRatings() {
+        return ratings;
+    }
 
-    public Product(Integer id, String name, String description, Double price, Boolean disponibility){
+    public Category getCategory() {
+        return category;
+    }
+
+    public void addRatingProduct(Rating rating){
+        this.ratings.add(rating);
+    }
+    public Product(Integer id, String name, String description, Double price, Boolean disponibility, Category category){
         this.id=id;
         this.name=name;
         this.description=description;
         this.disponibility=disponibility;
         this.price=price;
-        this.rantings=new ArrayList<Rating>();
+        this.ratings=new ArrayList<Rating>();
+        this.category = category;
     }
 
 

@@ -46,8 +46,8 @@ public class Admin extends User {
         this.lastName = lastName;
     }
 
-    public Admin(String role, String status, String firstName, String lastName){
-        super();
+    public Admin(String userName, String password, String email,String role, String status, String firstName, String lastName){
+        super(userName, password, email);
         this.role=role;
         this.status=status;
         this.firstName=firstName;

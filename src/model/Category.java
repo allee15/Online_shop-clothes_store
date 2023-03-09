@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Category {
 
     public Integer idCateg;
+
+
     public ArrayList<Product> products;
 
     public String name;
@@ -36,14 +38,23 @@ public class Category {
         this.idCateg = idCateg;
     }
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
     public Category(Integer idCateg, String name, String description){
         this.idCateg=idCateg;
         this.name=name;
         this.description=description;
+        this.products=new ArrayList<Product>();
     }
 
+
     public void addProduct(Product product) {
-        products.add(product);
+        this.products.add(product);
     }
 
     public void removeProduct(Product product) {

@@ -1,15 +1,16 @@
+package model;
+
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         // Create some products
-        Product p1 = new Product("T-Shirt", "A simple white T-shirt", 19.99, "Clothing", 4.5);
-        Product p2 = new Product("Jeans", "A pair of blue jeans", 39.99, "Clothing", 4.2);
-        Product p3 = new Product("Sneakers", "A pair of running shoes", 79.99, "Footwear", 4.8);
+        Category c1 = new Category(1,"Clothing","Awesome");
+        Category c2 = new Category(2,"Footwear","Super");
 
-        // Create some categories
-        Category c1 = new Category("Clothing");
-        Category c2 = new Category("Footwear");
+        Product p1 = new Product(1,"T-Shirt", "A simple white T-shirt", 19.99, true, c1);
+        Product p2 = new Product(2,"Jeans", "A pair of blue jeans", 39.99, true,c2);
+        Product p3 = new Product(3,"Sneakers", "A pair of running shoes", 79.99, true,c2);
 
-        // Add products to categories
         c1.addProduct(p1);
         c1.addProduct(p2);
         c2.addProduct(p3);
@@ -23,9 +24,10 @@ public class Main {
         store.addProduct(p3);
         store.addCategory(c1);
         store.addCategory(c2);
-        store.addCustomer(new Customer("John Doe", "johndoe@example.com", "123 Main St"));
-        store.addCustomer(new Customer("Jane Doe", "janedoe@example.com", "456 Elm St"));
-        store.addCustomer(new Admin("Admin User", "admin@example.com", "789 Oak St"));
+
+
+        store.addCustomer(new Customer("customer1","123456","customer1@yahoo.com", "072546548","Str Academiei"));
+        store.addAdmin(new Admin("admin1","123456","admin1@yahoo,com","Admin", "available", "Bucur", "Denisa"));
 
         // Display all products in the store
         System.out.println("All products:");
@@ -42,13 +44,17 @@ public class Main {
         System.out.println("\nAll customers:");
         store.displayAllCustomers();
 
+        // Display admins in the store
+        System.out.println("\nAll admins:");
+        store.displayAllAdmins();
+
         // Add a new product to the store (admin only)
-        Admin admin = new Admin("Admin User", "admin@example.com", "789 Oak St");
-        Product p4 = new Product("Jacket", "A warm winter jacket", 99.99, "Clothing", 4.6);
+        Admin admin = new Admin("admin1","123456","admin1@yahoo,com","Admin", "available", "Bucur", "Denisa");
+        Product p4 = new Product(3,"Gucci wallet", "A Gucci Wallet by Diana Clinciu", 1009.99, true,c2);
         admin.addProduct(p4, store);
 
         // Remove a product from the store (admin only)
-        Product p2ToRemove = new Product("Jeans", "A pair of blue jeans", 39.99, "Clothing", 4.2);
+        Product p2ToRemove = new Product(2,"Jeans", "A pair of blue jeans", 39.99, true,c2);
         admin.removeProduct(p2ToRemove, store);
 
         // Display all products in the store again
@@ -56,7 +62,7 @@ public class Main {
         store.displayAllProducts();
 
         // Add a product to a customer's cart
-        Customer customer = new Customer("John Doe", "johndoe@example.com", "123 Main St");
+        Customer customer = new Customer("customer1","123456","customer1@yahoo.com", "072546548","Str Academiei");
         customer.addItemToCart(p1);
 
         // Remove a product from a customer's cart

@@ -8,6 +8,8 @@ public class Rating {
 
     private Integer stars;
 
+    private Customer customer;
+    private Product product;
 
     public String getComment() {
         return comment;
@@ -25,7 +27,9 @@ public class Rating {
         this.stars = stars;
     }
 
-    public Rating(Integer stars, String comment){
+    public Rating(Integer stars, String comment, Customer customer, Product product){
+        this.customer=customer;
+        this.product=product;
         this.stars=stars;
         this.comment=comment;
     }
