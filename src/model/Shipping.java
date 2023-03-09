@@ -1,7 +1,8 @@
 package model;
 
 import java.util.Date;
-import java.util.SortedMap;
+import java.util.Calendar;
+import java.util.Objects;
 
 public class Shipping {
 
@@ -74,5 +75,24 @@ public class Shipping {
         this.postalCode=postalCode;
         this.dataLivrare=dataLivrare;
     }
+
+    public String toString(){
+        return "Shipping [idShipping=" +idShipping+" ,city="+city+" ,country="+country+" ,address="+address+" ,postalCode="+postalCode+" ,dataLivrare="+dataLivrare+"]";
+    }
+
+    //in functie de data livrarii, estimam ziua sigura a acesteia
+    public Date getDeliveryDate(int estimatedDeliveryTime) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dataLivrare);
+        cal.add(Calendar.DAY_OF_MONTH, estimatedDeliveryTime);
+        return cal.getTime();
+    }
+
+    //comparam 2 date de livrare
+    public static int compareByDataLivrare(Shipping s1, Shipping s2) {
+        return s1.getDataLivrare().compareTo(s2.getDataLivrare());
+    }
+
+
 
 }
