@@ -3,11 +3,11 @@ package model;
 import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
-        // Create some products
-        Category c1 = new Category(1,"Clothing","Awesome");
-        Category c2 = new Category(2,"Footwear","Super");
 
-        Product p1 = new Product(1,"T-Shirt", "A simple white T-shirt", 19.99, true, c1);
+        Category c1 = new Category(1,"Clothing","Awesome");
+        Category c2 = new Category(2,"Footwear","Terrific");
+
+        Product p1 = new Product(1,"Dress", "A shinny pink dress", 59.99, true, c1);
         Product p2 = new Product(2,"Jeans", "A pair of blue jeans", 39.99, true,c2);
         Product p3 = new Product(3,"Sneakers", "A pair of running shoes", 79.99, true,c2);
 
@@ -26,49 +26,49 @@ public class Main {
         store.addCategory(c2);
 
 
-        store.addCustomer(new Customer("customer1","123456","customer1@yahoo.com", "072546548","Str Academiei"));
-        store.addAdmin(new Admin("admin1","123456","admin1@yahoo,com","Admin", "available", "Bucur", "Denisa"));
+        store.addCustomer(new Customer("customer1","123456","customer1@yahoo.com", "Barbie", "Fashionista","072546548","Str Academiei"));
+        store.addAdmin(new Admin("admin1","123456","admin1@yahoo,com","Cristina", "Boboc", "admin", "available"));
 
-        // Display all products in the store
+
         System.out.println("All products:");
         store.displayAllProducts();
 
-        // Display products in the "Clothing" category
+
         System.out.println("\nProducts in the Clothing category:");
         ArrayList<Product> clothingProducts = store.getProductsByCategory("Clothing");
         for (Product product : clothingProducts) {
             System.out.println(product.getName() + " - " + product.getPrice());
         }
 
-        // Display customers in the store
+
         System.out.println("\nAll customers:");
         store.displayAllCustomers();
 
-        // Display admins in the store
+
         System.out.println("\nAll admins:");
         store.displayAllAdmins();
 
-        // Add a new product to the store (admin only)
-        Admin admin = new Admin("admin1","123456","admin1@yahoo,com","Admin", "available", "Bucur", "Denisa");
+
+        Admin admin = new Admin("admin1","123456","admin1@yahoo,com","Alexia", "Aldea", "admin", "available");
         Product p4 = new Product(3,"Gucci wallet", "A Gucci Wallet by Diana Clinciu", 1009.99, true,c2);
         admin.addProduct(p4, store);
 
-        // Remove a product from the store (admin only)
+
         Product p2ToRemove = new Product(2,"Jeans", "A pair of blue jeans", 39.99, true,c2);
         admin.removeProduct(p2ToRemove, store);
 
-        // Display all products in the store again
+
         System.out.println("\nAll products after adding and removing a product:");
         store.displayAllProducts();
 
-        // Add a product to a customer's cart
-        Customer customer = new Customer("customer1","123456","customer1@yahoo.com", "072546548","Str Academiei");
+
+        Customer customer = new Customer("customer1","123456","customer1@yahoo.com","Mihnea", "Gherghel", "072546548","Str Academiei");
         customer.addItemToCart(p1);
 
-        // Remove a product from a customer's cart
+
         customer.removeItemFromCart(p1);
 
-        // Process a customer's order
+
         customer.addItemToCart(p3);
         customer.checkOut();
     }

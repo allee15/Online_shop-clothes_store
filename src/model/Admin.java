@@ -4,8 +4,6 @@ public class Admin extends User {
 
     private String role;
     private String status;
-    private String firstName;
-    private String lastName;
 
 
 
@@ -15,13 +13,6 @@ public class Admin extends User {
 
     public String getStatus() {
         return status;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-    public String getLastName() {
-        return lastName;
     }
 
 
@@ -38,20 +29,11 @@ public class Admin extends User {
         this.status = status;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Admin(String userName, String password, String email,String role, String status, String firstName, String lastName){
-        super(userName, password, email);
+    public Admin(String userName, String password, String email, String firstName, String lastName,String role, String status){
+        super(userName, password, email,firstName,lastName);
         this.role=role;
         this.status=status;
-        this.firstName=firstName;
-        this.lastName=lastName;
     }
 
     public void addProduct(Product product, Store store) {
