@@ -1,9 +1,11 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Category {
 
     public Integer idCateg;
-
+    public ArrayList<Product> products;
 
     public String name;
 
@@ -39,5 +41,19 @@ public class Category {
         this.name=name;
         this.description=description;
     }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    public void displayProducts() {
+        for (Product product : products) {
+            System.out.println(product.getName() + " - " + product.getPrice());
+        }}
+
 }
 

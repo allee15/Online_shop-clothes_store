@@ -54,6 +54,12 @@ public class Admin extends User {
         this.lastName=lastName;
     }
 
+    public void addProduct(Product product, Store store) {
+        store.addProduct(product);
+    }
 
+    public void removeProduct(Product product, Store store) {
+        store.removeProduct(product);
+    }
 
 }
