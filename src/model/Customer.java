@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Customer extends User{
     private ArrayList<Product> cart;
-
     private String phone;
     private String address;
 

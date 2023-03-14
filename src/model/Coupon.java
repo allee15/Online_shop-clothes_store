@@ -6,30 +6,34 @@ public class Coupon {
     private Double percentage;
     private String code;
 
+
+
+
     public String getCode() {
         return code;
     }
+    public Double getPercentage() {
+        return percentage;
+    }
+    public Boolean getValid() {
+        return valid;
+    }
+
+
+
 
 
     public void setCode(String code) {
         code = code;
     }
-
-    public Double getPercentage() {
-        return percentage;
-    }
-
     public void setPercentage(Double percentage) {
         this.percentage = percentage;
     }
-
-    public Boolean getValid() {
-        return valid;
-    }
-
     public void setValid(Boolean valid) {
         this.valid = valid;
     }
+
+
 
 
     public Coupon(String code, Double percentage, Boolean valid){
@@ -37,6 +41,8 @@ public class Coupon {
         this.percentage=percentage;
         this.valid=valid;
     }
+
+
     public double reducere(double price){
         double redus;
         if (valid){

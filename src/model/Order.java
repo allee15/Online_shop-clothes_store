@@ -44,6 +44,9 @@ public class Order {
         this.dataPlasare = dataPlasare;
     }
 
+
+
+
     public Order(Integer idOrder, String metodaPlata, Float total, Date dataPlasare){
         this.idOrder=idOrder;
         this.metodaPlata=metodaPlata;
