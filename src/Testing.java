@@ -2,7 +2,7 @@ import Business.Store;
 import model.*;
 
 import java.util.ArrayList;
-public class Main {
+public class Testing {
     public static void main(String[] args) {
 
         Category c1 = new Category(1,"Clothing","Awesome");

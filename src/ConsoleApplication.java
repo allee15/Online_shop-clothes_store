@@ -1,6 +1,6 @@
-package model;
+import model.Category;
+import model.Product;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 public class ConsoleApplication {
 
