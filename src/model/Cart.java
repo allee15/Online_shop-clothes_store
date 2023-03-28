@@ -6,12 +6,15 @@ import java.util.List;
 public class Cart {
 
     private List<Product> products;
-
     private List<Coupon> Coupons;
+    private List<Product > itemsInCart;
 
 
 
 
+    public List<Product> getItemsInCart() {
+        return itemsInCart;
+    }
     public List<Product> getProducts() {
         return products;
     }
@@ -25,6 +28,7 @@ public class Cart {
     public  Cart(){
         this.products= new ArrayList<Product>();
         this.Coupons=new ArrayList<Coupon>();
+        this.itemsInCart= new ArrayList<Product>();
     }
 
 
@@ -42,6 +46,11 @@ public class Cart {
 
     public void adaugareCoupon(Coupon Coupon){Coupons.add(Coupon);}
     public void stergereCoupon(Coupon Coupon){Coupons.remove(Coupon);}
+
+
+
+    public void adaugareItem(Product product){itemsInCart.add(product);}
+    public void stergereItem(Product product){itemsInCart.remove(product);}
 
 
 

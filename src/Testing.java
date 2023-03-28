@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Testing {
     public static void main(String[] args) {
 
+
         Category c1 = new Category(1,"Clothing","Awesome");
         Category c2 = new Category(2,"Footwear","Terrific");
 
@@ -52,11 +53,11 @@ public class Testing {
 
         Admin admin = new Admin("admin1","123456","admin1@yahoo,com","Alexia", "Aldea", "admin", "available");
         Product p4 = new Product(3,"Gucci wallet", "A Gucci Wallet by Diana Clinciu", 1009.99, true,c2);
-        admin.addProduct(p4, store);
+
 
 
         Product p2ToRemove = new Product(2,"Jeans", "A pair of blue jeans", 39.99, true,c2);
-        admin.removeProduct(p2ToRemove, store);
+
 
 
         System.out.println("\nAll products after adding and removing a product:");

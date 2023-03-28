@@ -62,7 +62,6 @@ public class Category {
         products.remove(product);
     }
 
-
     public void displayProducts() {
         for (Product product : products) {
             System.out.println(product.getName() + " - " + product.getPrice());

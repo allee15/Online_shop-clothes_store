@@ -1,13 +1,16 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     //metoda de plata, total
     private Integer idOrder;
     private String metodaPlata;
-    private Float total;
     private Date dataPlasare;
+
+    private List<Product> itemsInOrder;
 
 
     public Integer getIdOrder(){
@@ -18,13 +21,14 @@ public class Order {
         return metodaPlata;
     }
 
-    public Float getTotal() {
-        return total;
-    }
-
     public Date getDataPlasare() {
         return dataPlasare;
     }
+    public List<Product> getItemsInOrder() {
+        return itemsInOrder;
+    }
+
+
 
 
 
@@ -36,10 +40,6 @@ public class Order {
         this.metodaPlata = metodaPlata;
     }
 
-    public void setTotal(Float total) {
-        this.total = total;
-    }
-
     public void setDataPlasare(Date dataPlasare) {
         this.dataPlasare = dataPlasare;
     }
@@ -47,12 +47,27 @@ public class Order {
 
 
 
-    public Order(Integer idOrder, String metodaPlata, Float total, Date dataPlasare){
+    public Order(Integer idOrder, String metodaPlata, Date dataPlasare){
         this.idOrder=idOrder;
         this.metodaPlata=metodaPlata;
-        this.total=total;
         this.dataPlasare=dataPlasare;
     }
+
+    public void addItem(Product p){
+        this.itemsInOrder.add(p);
+    }
+
+    public void removeItem(Product p){
+        this.itemsInOrder.remove(p);
+    }
+
+    public double calculateTotalCost(){
+        double totalCost=0.0;
+        for(Product p: this.itemsInOrder)
+            totalCost+= p.getPrice();
+        return totalCost;
+    }
+
 
 
 }
