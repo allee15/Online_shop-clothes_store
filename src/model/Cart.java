@@ -25,7 +25,7 @@ public class Cart {
 
 
 
-    public  Cart(){
+    public  Cart(ArrayList<Product> itemsInCart, ArrayList<Coupon> coupons, ArrayList<Product> products){
         this.products= new ArrayList<Product>();
         this.Coupons=new ArrayList<Coupon>();
         this.itemsInCart= new ArrayList<Product>();

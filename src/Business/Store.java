@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 
 public class Store {
@@ -40,7 +41,7 @@ public class Store {
         products.add(p1);
         Admin a1=new Admin(1,"admin1","123456","admin1@yahoo,com","Denisa","Bucur","admin", "available");
         admins.add(a1);
-        Customer customer1=new Customer(1,"customer1","123456","customer1@yahoo.com", "cutomer1","customer1","072546548","Str Academiei");
+        Customer customer1=new Customer(1,"customer1","123456","customer1@yahoo.com", "cutomer1","customer1","072546548","Str Academiei",products);
         customers.add(customer1);
         Shipping shipping1=new Shipping(1,"Focsani","Romania","Strada Academiei","000000",new Date());
         shippings.add(shipping1);
@@ -104,9 +105,79 @@ public class Store {
         }
     }
 
+    public void addCoupon(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Dati codul cuponului:");
+        String code=reader.nextLine();
+        System.out.println("Este valid cuponul?Selectati:'true' sau 'false'");
+        Boolean valid= Boolean.valueOf(reader.nextLine());
+        System.out.println("Dati procentul de reducere al cuponului");
+        Double percentage= Double.valueOf(reader.nextLine());
 
+        Coupon cupon_nou= new Coupon(code,percentage,valid);
+        coupons.add(cupon_nou);
 
+    }
+    public void displayCoupon(){
+        for(Coupon coupon:coupons){
+            System.out.println(coupon);
+            System.out.println();
+        }
+    }
 
+    public void addShipping(){
+        Scanner reader=new Scanner(System.in);
+        System.out.println();
+
+        Integer idShipping=Integer.parseInt("Dati id-ul shippingului:");
+        System.out.println("Dati orasul in care se doreste livrarea:");
+        String city=reader.nextLine();
+        System.out.println("Dati tara in care se doreste livrarea:");
+        String country=reader.nextLine();
+        System.out.println("Dati adresa locuintei:");
+        String address=reader.nextLine();
+        System.out.println("Dati adresa postala:");
+        String postalCode=reader.nextLine();
+        System.out.println("Dati dataLivrare:");
+        String data1=reader.nextLine();
+        Date dataLivrare = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            dataLivrare = dateFormat.parse(data1);
+        }catch(Exception e){
+            System.out.println("Ati oferit o data gresita");
+        }
+
+        Shipping shipping_nou=new Shipping(idShipping,city,country,address,postalCode,dataLivrare);
+        shippings.add(shipping_nou);
+
+    }
+
+    public void displayShipping(){
+        for(Shipping shipping:shippings){
+            System.out.println(shipping);
+            System.out.println();
+        }
+    }
+
+    public void addCustomer(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Dati numarul de telefon:");
+        String phone=reader.nextLine();
+        System.out.println("Dati adresa");
+        String address=reader.nextLine();
+
+        Customer client_nou= new Customer(phone,address,new ArrayList<Product>());
+        customers.add(client_nou);
+
+    }
+
+    public void displayCustomer(){
+        for(Customer customer:customers){
+            System.out.println(customer);
+            System.out.println();
+        }
+    }
 
 
 
@@ -136,7 +207,7 @@ public class Store {
 
 
 
-
+/*
     public ArrayList<Product> getProductsByCategory(String categoryName) {
         ArrayList<Product> productsByCategory = new ArrayList<>();
         for (Product product : products) {
@@ -164,4 +235,7 @@ public class Store {
         for (Admin admin : admins) {
             System.out.println(admin.getUserName() + " - " + admin.getEmail());
         }
-    }}
+    }*/
+
+
+}

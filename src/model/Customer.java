@@ -1,11 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer extends User{
     private final ArrayList<Product> cart;
     private String phone;
     private String address;
+
 
 
     public String getPhone(){
@@ -15,7 +17,7 @@ public class Customer extends User{
     public String getAddress(){
         return address;
     }
-    public ArrayList<Product> getCart() {
+    public List<Product> getCart() {
         return cart;
     }
 
@@ -29,16 +31,16 @@ public class Customer extends User{
     }
 
 
-    public Customer(){
+    public Customer(String phone, String address, ArrayList<Product> products){
         this.address="";
         this.phone="";
         this.cart=new ArrayList<>();
     }
-    public Customer(Integer idUser,String userName, String password, String email, String firstName, String lastName,String phone, String address){
+    public Customer(Integer idUser, String userName, String password, String email, String firstName, String lastName, String phone, String address, ArrayList<Product>cart){
         super(idUser,userName,password,email,firstName, lastName);
         this.phone=phone;
         this.address=address;
-        this.cart=new ArrayList<Product>();
+        this.cart=cart;
     }
 
     public void addItemToCart(Product product) {
