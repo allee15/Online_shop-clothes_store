@@ -9,9 +9,6 @@ public class Rating {
 
 
 
-
-
-
     public String getComment() {
         return comment;
     }
@@ -41,4 +38,10 @@ public class Rating {
     }
 
 
+    public Rating(){
+        this.customer=null;
+        this.product=null;
+        this.stars=5;
+        this.comment="Foarte fain";
+    }
 }

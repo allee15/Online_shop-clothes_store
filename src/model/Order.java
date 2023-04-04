@@ -12,6 +12,8 @@ public class Order {
 
     private List<Product> itemsInOrder;
 
+    private Shipping shipping;
+
 
     public Integer getIdOrder(){
         return idOrder;
@@ -28,10 +30,15 @@ public class Order {
         return itemsInOrder;
     }
 
+    public Shipping getShipping(){
+        return shipping;
+    }
 
 
+    public void setShipping(Shipping shipping){
+        this.shipping=shipping;
 
-
+    }
     public void setIdOrder(Integer idOrder){
         this.idOrder= idOrder;
     }
@@ -47,12 +54,20 @@ public class Order {
 
 
 
-    public Order(Integer idOrder, String metodaPlata, Date dataPlasare){
+    public Order(Integer idOrder, String metodaPlata, Date dataPlasare,Shipping shipping){
+
         this.idOrder=idOrder;
         this.metodaPlata=metodaPlata;
         this.dataPlasare=dataPlasare;
+        this.shipping=shipping;
     }
 
+    public Order(){
+        this.idOrder=-1;
+        this.metodaPlata="card";
+        this.dataPlasare=new Date();
+        this.shipping=null;
+    }
     public void addItem(Product p){
         this.itemsInOrder.add(p);
     }

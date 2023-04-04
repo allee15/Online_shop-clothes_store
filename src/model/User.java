@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class User {
+
+    private Integer idUser;
     private String userName;
     private String password;
     private String email;
@@ -10,6 +12,13 @@ public class User {
     private String lastName;
 
 
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
 
     public String getUserName() {
         return userName;
@@ -43,7 +52,8 @@ public class User {
     public void setFirstName(String firstName){this.firstName=firstName;}
     public void setLastName(String lastName){this.lastName=lastName;}
 
-    public User(String userName, String password, String email, String firstName, String lastName){
+    public User(Integer idUser,String userName, String password, String email, String firstName, String lastName){
+        this.idUser=idUser;
         this.userName=userName;
         this.password=password;
         this.email=email;

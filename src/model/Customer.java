@@ -26,8 +26,8 @@ public class Customer extends User{
     }
 
 
-    public Customer(String userName, String password, String email, String firstName, String lastName,String phone, String address){
-        super(userName,password,email,firstName, lastName);
+    public Customer(Integer idUser,String userName, String password, String email, String firstName, String lastName,String phone, String address){
+        super(idUser,userName,password,email,firstName, lastName);
         this.phone=phone;
         this.address=address;
         this.cart=new ArrayList<Product>();

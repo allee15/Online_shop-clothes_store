@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Category {
 
-    public Integer idCateg;
-    public ArrayList<Product> products;
-    public String name;
-    public String description;
+    private Integer idCateg;
+//    public ArrayList<Product> products;
+    private String name;
+    private String description;
 
 
 
@@ -21,9 +21,9 @@ public class Category {
     public Integer getIdCateg() {
         return idCateg;
     }
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
+//    public ArrayList<Product> getProducts() {
+//        return products;
+//    }
 
 
 
@@ -39,9 +39,9 @@ public class Category {
     public void setIdCateg(Integer idCateg) {
         this.idCateg = idCateg;
     }
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
+//    public void setProducts(ArrayList<Product> products) {
+//        this.products = products;
+//    }
 
 
 
@@ -50,22 +50,25 @@ public class Category {
         this.idCateg=idCateg;
         this.name=name;
         this.description=description;
-        this.products=new ArrayList<Product>();
+//        this.products=new ArrayList<Product>();
     }
 
-
-    public void addProduct(Product product) {
-        this.products.add(product);
+    @Override
+    public String toString(){
+        return "idCategorie="+getIdCateg()+" "+"nume categorie="+getName()+" "+"descriere categorie="+getDescription()+'\n';
     }
+//    public void addProduct(Product product) {
+//        this.products.add(product);
+//    }
 
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
+//    public void removeProduct(Product product) {
+//        products.remove(product);
+//    }
 
-    public void displayProducts() {
-        for (Product product : products) {
-            System.out.println(product.getName() + " - " + product.getPrice());
-        }}
+//    public void displayProducts() {
+//        for (Product product : products) {
+//            System.out.println(product.getName() + " - " + product.getPrice());
+//        }}
 
 }
 

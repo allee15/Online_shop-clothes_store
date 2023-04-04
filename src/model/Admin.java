@@ -19,11 +19,14 @@ public final class Admin extends User {
 
 
 
-    public Admin(String userName, String password, String email, String firstName, String lastName,String role, String status){
-        super(userName, password, email,firstName,lastName);
+    public Admin( Integer idUser,String userName, String password, String email, String firstName, String lastName,String role, String status){
+        super(idUser,userName, password, email,firstName,lastName);
         this.role=role;
         this.status=status;
     }
-
+    @Override
+    public String toString(){
+        return "idUser="+getIdUser()+" "+"username="+getUserName()+" "+"password="+getPassword()+"email"+getEmail()+" "+"nume="+getFirstName()+" "+"prenume="+getLastName()+" "+"role="+getRole()+" "+"status="+getStatus()+'\n';
+    }
 
 }

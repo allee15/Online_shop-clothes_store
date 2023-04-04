@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.Objects;
-
+import java.time.LocalDate;
 public class Shipping {
 
     private Integer idShipping;
@@ -76,6 +76,14 @@ public class Shipping {
         this.dataLivrare=dataLivrare;
     }
 
+    public Shipping(){
+        this.idShipping=1;
+        this.city="Bucharest";
+        this.country="Romania";
+        this.address="Str Amzei";
+        this.postalCode="0125";
+        this.dataLivrare=new Date();
+    }
     public String toString(){
         return "Shipping [idShipping=" +idShipping+" ,city="+city+" ,country="+country+" ,address="+address+" ,postalCode="+postalCode+" ,dataLivrare="+dataLivrare+"]";
     }

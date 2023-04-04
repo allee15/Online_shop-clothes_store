@@ -1,12 +1,11 @@
 package Business;
 
-import model.Admin;
-import model.Category;
-import model.Customer;
-import model.Product;
+import model.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Store {
@@ -15,40 +14,128 @@ public class Store {
     private ArrayList<Admin> admins;
     private ArrayList<Category> categories;
 
-    public Store() {
+    private ArrayList<Coupon> coupons;
+
+    private ArrayList<Rating>  ratings;
+    private ArrayList<Shipping> shippings;
+    private ArrayList<Order> orders;
+        public Store() {
         products = new ArrayList<>();
         customers = new ArrayList<>();
         admins = new ArrayList<>();
         categories = new ArrayList<>();
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
-
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
+        coupons = new ArrayList<>();
+        ratings = new ArrayList<>();
+        shippings = new ArrayList<>();
+        orders = new ArrayList<>();
     }
 
 
+    public void init(){
+           Category c1=new Category(2,"Footwear","Terrific");
+           Category c2=new Category(1,"Clothing","Awesome");
+        categories.add(c1);
+        categories.add(c2);
+        Product p1=new Product(1,"shirt","frumos",1.0,true, c1);
+        products.add(p1);
+        Admin a1=new Admin(1,"admin1","123456","admin1@yahoo,com","Denisa","Bucur","admin", "available");
+        admins.add(a1);
+        Customer customer1=new Customer(1,"customer1","123456","customer1@yahoo.com", "cutomer1","customer1","072546548","Str Academiei");
+        customers.add(customer1);
+        Shipping shipping1=new Shipping(1,"Focsani","Romania","Strada Academiei","000000",new Date());
+        shippings.add(shipping1);
+        Order order1= new Order(1,"card",new Date(),shipping1);
+        orders.add(order1);
+        Coupon coupon1=new Coupon("012345",20.0, true);
+        coupons.add(coupon1);
+        Rating rating1 = new Rating(10,"Super",customer1,p1);
+        ratings.add(rating1);
 
-    public void removeCustomer(Customer customer) {
-        customers.remove(customer);
-    }
-    public void addAdmin(Admin admin){admins.add(admin);}
-    public void removeAdmin(Admin admin){admins.remove(admin);}
 
-    public void addCategory(Category category) {
-        categories.add(category);
     }
 
-    public void removeCategory(Category category) {
-        categories.remove(category);
+
+    public void addCategory(){
+            Scanner reader = new Scanner(System.in);
+            Integer idCateg= Integer.parseInt(reader.nextLine());
+            System.out.println("Dati numele categoriei");
+            String name=reader.nextLine();
+            System.out.println("Dati descrierea categoriei");
+            String description=reader.nextLine();
+            Category categorie_noua= new Category(idCateg,name,description);
+            categories.add(categorie_noua);
+
     }
+    public void displayCategory(){
+            for(Category category:categories){
+                System.out.println(category);
+                System.out.println();
+            }
+    }
+    //    public void removeCategory(Category category) {
+//        categories.remove(category);
+//    }
+
+    public void addAdmin(){
+            Scanner reader=new Scanner(System.in);
+            System.out.println();
+        Integer idUser=Integer.parseInt("Dati id-ul adminului:");
+        System.out.println("Dati username-ul adminului:");
+        String username=reader.nextLine();
+        System.out.println("Dati parola adminului:");
+        String password=reader.nextLine();
+        System.out.println("Dati emailul adminului:");
+        String email=reader.nextLine();
+        System.out.println("Dati prenumele adminului:");
+        String firstName=reader.nextLine();
+        System.out.println("Dati numele de familie al adminului:");
+        String lastName=reader.nextLine();
+        System.out.println("Dati rolul adminului:");
+        String role=reader.nextLine();
+        System.out.println("Dati statusul adminului:");
+        String status=reader.nextLine();
+        Admin admin_nou= new Admin(idUser,username,password,email,firstName,lastName,role,status);
+        admins.add(admin_nou);
+    }
+    public void displayAdmin(){
+        for(Admin admin:admins){
+            System.out.println(admin);
+            System.out.println();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+//
+//    public void addProduct(Product product) {
+//        products.add(product);
+//    }
+//
+//    public void removeProduct(Product product) {
+//        products.remove(product);
+//    }
+//
+//    public void addCustomer(Customer customer) {
+//        customers.add(customer);
+//    }
+//
+//
+//
+//    public void removeCustomer(Customer customer) {
+//        customers.remove(customer);
+//    }
+//    public void addAdmin(Admin admin){admins.add(admin);}
+//    public void removeAdmin(Admin admin){admins.remove(admin);}
+
+
+
 
     public ArrayList<Product> getProductsByCategory(String categoryName) {
         ArrayList<Product> productsByCategory = new ArrayList<>();

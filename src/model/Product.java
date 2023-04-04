@@ -93,6 +93,16 @@ public class Product {
         this.ratings=new ArrayList<Rating>();
         this.category = category;
     }
+    public Product(){
+        this.id=-1;
+        this.name="anonim";
+        this.description="frumos";
+        this.price = 1.0;
+        this.disponibility=false;
+        this.category=null;
+
+
+    }
 
 
 
