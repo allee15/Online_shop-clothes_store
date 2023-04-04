@@ -110,4 +110,23 @@ public class Product {
         return "id="+getId()+" "+"name="+getName()+" "+"description="+getDescription()+" "+"disponibility="+getDisponibility()+" "+"price="+getPrice()+" "+"ratings="+getRatings()+" "+"category="+getCategory()+'\n';
     }
 
+    @Override
+    public boolean equals (Object ob){
+
+        if( ob== this)
+            return true;
+        if(ob==null)
+            return false;
+        if(ob instanceof Product){
+            Product other = (Product) ob;
+            return other.getId().equals(getName()) &&
+                    other.getName().equals(getDescription()) &&
+                    other.getDescription().equals(getCategory()) &&
+                    other.getCategory().equals(getPrice()) &&
+                    other.getPrice().equals(getDisponibility()) &&
+                    other.getDisponibility().equals(getDisponibility());
+
+        }
+        return false;
+    }
 }
