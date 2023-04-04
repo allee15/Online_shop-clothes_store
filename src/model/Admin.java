@@ -18,7 +18,10 @@ public final class Admin extends User {
     }
 
 
-
+    public Admin(){
+        this.status="";
+        this.role="";
+    }
     public Admin( Integer idUser,String userName, String password, String email, String firstName, String lastName,String role, String status){
         super(idUser,userName, password, email,firstName,lastName);
         this.role=role;

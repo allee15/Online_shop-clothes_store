@@ -9,16 +9,16 @@ import java.util.Scanner;
 
 
 public class Store {
-    private ArrayList<Product> products;
-    private ArrayList<Customer> customers;
-    private ArrayList<Admin> admins;
-    private ArrayList<Category> categories;
+    private final ArrayList<Product> products;
+    private final ArrayList<Customer> customers;
+    private final ArrayList<Admin> admins;
+    private final ArrayList<Category> categories;
 
-    private ArrayList<Coupon> coupons;
+    private final ArrayList<Coupon> coupons;
 
-    private ArrayList<Rating>  ratings;
-    private ArrayList<Shipping> shippings;
-    private ArrayList<Order> orders;
+    private final ArrayList<Rating>  ratings;
+    private final ArrayList<Shipping> shippings;
+    private final ArrayList<Order> orders;
         public Store() {
         products = new ArrayList<>();
         customers = new ArrayList<>();

@@ -4,7 +4,7 @@ public class Coupon {
 
     private Boolean valid;
     private Double percentage;
-    private String code;
+    private final String code;
 
 
 
@@ -36,6 +36,11 @@ public class Coupon {
 
 
 
+    public Coupon(){
+        this.code="";
+        this.percentage=0.0;
+        this.valid=false;
+    }
     public Coupon(String code, Double percentage, Boolean valid){
         this.code=code;
         this.percentage=percentage;
@@ -50,5 +55,11 @@ public class Coupon {
             return redus;
         }
         else return  price;
+    }
+
+
+    @Override
+    public String toString(){
+        return "Code="+getCode()+" "+"percentage="+getPercentage()+" "+"valid="+getValid()+"email"+'\n';
     }
 }

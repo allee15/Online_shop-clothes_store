@@ -52,6 +52,14 @@ public class User {
     public void setFirstName(String firstName){this.firstName=firstName;}
     public void setLastName(String lastName){this.lastName=lastName;}
 
+    public User(){
+        this.idUser=0;
+        this.lastName="";
+        this.firstName="";
+        this.userName="";
+        this.email="";
+        this.password="";
+    }
     public User(Integer idUser,String userName, String password, String email, String firstName, String lastName){
         this.idUser=idUser;
         this.userName=userName;
@@ -61,6 +69,10 @@ public class User {
         this.lastName=lastName;
     }
 
+    @Override
+    public String toString(){
+        return "idUser="+getIdUser()+" "+"username="+getUserName()+" "+"password="+getPassword()+"email"+getEmail()+" "+"nume="+getFirstName()+" "+"prenume="+getLastName()+" "+"role="+'\n';
+    }
 
 
 }

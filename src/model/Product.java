@@ -105,6 +105,9 @@ public class Product {
     }
 
 
-
+    @Override
+    public String toString(){
+        return "id="+getId()+" "+"name="+getName()+" "+"description="+getDescription()+" "+"disponibility="+getDisponibility()+" "+"price="+getPrice()+" "+"ratings="+getRatings()+" "+"category="+getCategory()+'\n';
+    }
 
 }

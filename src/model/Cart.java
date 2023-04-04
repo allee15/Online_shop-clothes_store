@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Cart {
 
-    private List<Product> products;
-    private List<Coupon> Coupons;
-    private List<Product > itemsInCart;
+    private final List<Product> products;
+    private final List<Coupon> Coupons;
+    private final List<Product > itemsInCart;
 
 
 
@@ -29,6 +29,11 @@ public class Cart {
         this.products= new ArrayList<Product>();
         this.Coupons=new ArrayList<Coupon>();
         this.itemsInCart= new ArrayList<Product>();
+    }
+    public Cart(List<Product>itemsInCart, List<Product>products, List<Coupon>Coupons){
+        this.Coupons=Coupons;
+        this.itemsInCart=itemsInCart;
+        this.products=products;
     }
 
 
@@ -63,6 +68,11 @@ public class Cart {
             total = total - Coupon.reducere(total);
         }
         return total;
+    }
+
+    @Override
+    public String toString(){
+        return "Items in cart="+getItemsInCart()+" "+"Coupons="+getCoupons()+" "+"Prducts="+getProducts()+'\n';
     }
 
 }

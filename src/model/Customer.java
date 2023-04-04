@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Customer extends User{
-    private ArrayList<Product> cart;
+    private final ArrayList<Product> cart;
     private String phone;
     private String address;
 
@@ -14,6 +14,9 @@ public class Customer extends User{
 
     public String getAddress(){
         return address;
+    }
+    public ArrayList<Product> getCart() {
+        return cart;
     }
 
 
@@ -26,6 +29,11 @@ public class Customer extends User{
     }
 
 
+    public Customer(){
+        this.address="";
+        this.phone="";
+        this.cart=new ArrayList<>();
+    }
     public Customer(Integer idUser,String userName, String password, String email, String firstName, String lastName,String phone, String address){
         super(idUser,userName,password,email,firstName, lastName);
         this.phone=phone;
@@ -45,5 +53,11 @@ public class Customer extends User{
 
     public void checkOut() {
         cart.clear();
+    }
+
+
+    @Override
+    public String toString(){
+        return "idUser="+getIdUser()+" "+"username="+getUserName()+" "+"password="+getPassword()+"email"+getEmail()+" "+"nume="+getFirstName()+" "+"prenume="+getLastName()+" "+"phone="+getPhone()+" "+"address="+getAddress()+'\n';
     }
 }

@@ -45,6 +45,11 @@ public class Category {
 
 
 
+    public Category(){
+        this.idCateg=0;
+        this.name="";
+        this.description="";
+    }
 
     public Category(Integer idCateg, String name, String description){
         this.idCateg=idCateg;

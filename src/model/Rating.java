@@ -4,8 +4,8 @@ public class Rating {
 
     private String comment;
     private Integer stars;
-    private Customer customer;
-    private Product product;
+    private final Customer customer;
+    private final Product product;
 
 
 
@@ -15,8 +15,10 @@ public class Rating {
     public Integer getStars() {
         return stars;
     }
-
-
+    public Product getProduct() { return product; }
+    public Customer getCustomer() {
+        return customer;
+    }
 
 
 
@@ -41,7 +43,11 @@ public class Rating {
     public Rating(){
         this.customer=null;
         this.product=null;
-        this.stars=5;
+        this.stars=0;
         this.comment="Foarte fain";
+    }
+    @Override
+    public String toString(){
+        return "customer="+getCustomer()+" "+"product="+getProduct()+" "+"start="+getStars()+" "+"comment="+getComment()+'\n';
     }
 }

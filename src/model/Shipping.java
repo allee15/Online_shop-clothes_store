@@ -78,14 +78,11 @@ public class Shipping {
 
     public Shipping(){
         this.idShipping=1;
-        this.city="Bucharest";
-        this.country="Romania";
-        this.address="Str Amzei";
-        this.postalCode="0125";
+        this.city="";
+        this.country="";
+        this.address="";
+        this.postalCode="";
         this.dataLivrare=new Date();
-    }
-    public String toString(){
-        return "Shipping [idShipping=" +idShipping+" ,city="+city+" ,country="+country+" ,address="+address+" ,postalCode="+postalCode+" ,dataLivrare="+dataLivrare+"]";
     }
 
     //in functie de data livrarii, estimam ziua sigura a acesteia
@@ -102,5 +99,8 @@ public class Shipping {
     }
 
 
-
+    @Override
+    public String toString(){
+        return "idShipping="+getIdShipping()+" "+"city="+getCity()+" "+"country="+getCountry()+" "+"address="+getAddress()+" "+"postal code="+getPostalCode()+" "+"data livrarii="+getDataLivrare()+'\n';
+    }
 }
