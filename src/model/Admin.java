@@ -29,7 +29,7 @@ public final class Admin extends User {
     }
     @Override
     public String toString(){
-        return "idUser="+getIdUser()+" "+"username="+getUserName()+" "+"password="+getPassword()+"email"+getEmail()+" "+"nume="+getFirstName()+" "+"prenume="+getLastName()+" "+"role="+getRole()+" "+"status="+getStatus()+'\n';
+        return super.toString()+'\n'+"role="+getRole()+'\n'+"status="+getStatus()+'\n';
     }
 
 }

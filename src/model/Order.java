@@ -87,6 +87,6 @@ public class Order {
 
     @Override
     public String toString(){
-        return "idOrder="+getIdOrder()+" "+"metoda de plata="+getMetodaPlata()+" "+"data plasarii="+getDataPlasare()+" "+"shipping="+getShipping()+'\n';
+        return "idOrder="+getIdOrder()+'\n'+"metoda de plata="+getMetodaPlata()+'\n'+"data plasarii="+getDataPlasare()+'\n'+"shipping="+getShipping()+'\n';
     }
 }

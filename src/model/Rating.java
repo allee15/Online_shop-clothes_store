@@ -4,8 +4,8 @@ public class Rating {
 
     private String comment;
     private Integer stars;
-    private final Customer customer;
-    private final Product product;
+    private Customer customer;
+//    private final Product product;
 
 
 
@@ -15,7 +15,7 @@ public class Rating {
     public Integer getStars() {
         return stars;
     }
-    public Product getProduct() { return product; }
+//    public Product getProduct() { return product; }
     public Customer getCustomer() {
         return customer;
     }
@@ -32,9 +32,8 @@ public class Rating {
 
 
 
-    public Rating(Integer stars, String comment, Customer customer, Product product){
+    public Rating(Integer stars, String comment, Customer customer){
         this.customer=customer;
-        this.product=product;
         this.stars=stars;
         this.comment=comment;
     }
@@ -42,12 +41,11 @@ public class Rating {
 
     public Rating(){
         this.customer=null;
-        this.product=null;
         this.stars=0;
         this.comment="Foarte fain";
     }
     @Override
     public String toString(){
-        return "customer="+getCustomer()+" "+"product="+getProduct()+" "+"start="+getStars()+" "+"comment="+getComment()+'\n';
+        return "customer="+getCustomer().getFirstName()+'\n'+"stars="+getStars()+'\n'+"comment="+getComment()+'\n';
     }
 }

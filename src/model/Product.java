@@ -83,15 +83,15 @@ public class Product {
 
 
 
-
-    public Product(Integer id, String name, String description, Double price, Boolean disponibility, Category category){
+    public Product(Integer id, String name, String description, Double price, Boolean disponibility, Integer quantity, Category category,ArrayList<Rating>ratings){
         this.id=id;
         this.name=name;
         this.description=description;
         this.disponibility=disponibility;
         this.price=price;
-        this.ratings=new ArrayList<Rating>();
+        this.ratings=ratings;
         this.category = category;
+        this.quantity=quantity;
     }
     public Product(){
         this.id=-1;
@@ -100,6 +100,8 @@ public class Product {
         this.price = 1.0;
         this.disponibility=false;
         this.category=null;
+        this.quantity=0;
+        this.ratings=new ArrayList<>();
 
 
     }
@@ -107,7 +109,7 @@ public class Product {
 
     @Override
     public String toString(){
-        return "id="+getId()+" "+"name="+getName()+" "+"description="+getDescription()+" "+"disponibility="+getDisponibility()+" "+"price="+getPrice()+" "+"ratings="+getRatings()+" "+"category="+getCategory()+'\n';
+        return  "id="+getId()+'\n'+"name="+getName()+'\n'+"description="+getDescription()+'\n'+"disponibility="+getDisponibility()+'\n'+"price="+getPrice()+'\n'+"quantity"+getQuantity()+'\n'+"ratings="+getRatings()+'\n'+"category="+getCategory()+'\n';
     }
 
     @Override
@@ -129,4 +131,6 @@ public class Product {
         }
         return false;
     }
+
+
 }

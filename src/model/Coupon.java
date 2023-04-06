@@ -60,6 +60,6 @@ public class Coupon {
 
     @Override
     public String toString(){
-        return "Code="+getCode()+" "+"percentage="+getPercentage()+" "+"valid="+getValid()+"email"+'\n';
+        return "Code="+getCode()+'\n'+"percentage="+getPercentage()+'\n'+"valid="+getValid()+"email"+'\n';
     }
 }

@@ -101,6 +101,6 @@ public class Shipping {
 
     @Override
     public String toString(){
-        return "idShipping="+getIdShipping()+" "+"city="+getCity()+" "+"country="+getCountry()+" "+"address="+getAddress()+" "+"postal code="+getPostalCode()+" "+"data livrarii="+getDataLivrare()+'\n';
+        return "idShipping="+getIdShipping()+'\n'+"city="+getCity()+'\n'+"country="+getCountry()+'\n'+"address="+getAddress()+'\n'+"postal code="+getPostalCode()+'\n'+"data livrarii="+getDataLivrare()+'\n';
     }
 }

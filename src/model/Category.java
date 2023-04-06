@@ -60,7 +60,7 @@ public class Category {
 
     @Override
     public String toString(){
-        return "idCategorie="+getIdCateg()+" "+"nume categorie="+getName()+" "+"descriere categorie="+getDescription()+'\n';
+        return "idCategorie="+getIdCateg()+'\n'+"nume categorie="+getName()+'\n'+"descriere categorie="+getDescription()+'\n';
     }
 //    public void addProduct(Product product) {
 //        this.products.add(product);

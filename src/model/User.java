@@ -71,7 +71,7 @@ public class User {
 
     @Override
     public String toString(){
-        return "idUser="+getIdUser()+" "+"username="+getUserName()+" "+"password="+getPassword()+"email"+getEmail()+" "+"nume="+getFirstName()+" "+"prenume="+getLastName()+" "+"role="+'\n';
+        return "idUser="+getIdUser()+'\n'+"username="+getUserName()+'\n'+"password="+getPassword()+'\n'+"email"+getEmail()+'\n'+"nume="+getFirstName()+'\n'+"prenume="+getLastName()+'\n';
     }
 
 
