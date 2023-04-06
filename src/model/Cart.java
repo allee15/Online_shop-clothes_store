@@ -51,7 +51,7 @@ public class Cart {
 
 
 
-    public Double Total(){
+    public Double Total(List<Product>products, List<Coupon>Coupons){
         double total=0;
         for (Product product: products){
             total= total + product.getQuantity()*product.getPrice();
@@ -66,5 +66,6 @@ public class Cart {
     public String toString(){
         return "Coupons="+getCoupons()+'\n'+"Prducts="+getProducts()+'\n';
     }
+
 
 }
