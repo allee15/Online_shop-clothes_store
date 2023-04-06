@@ -27,9 +27,10 @@ public class ConsoleApplication {
         System.out.println("15. Afiseaza profil client");
         System.out.println("16. Afiseaza profil admin");
         System.out.println("17. Afiseaza categoriile");
-        System.out.println("18. Logout");
+//        System.out.println("18. Logout");
         System.out.println("Ce vei alege? ^^");
     }
+
     public static void main(String[] args){
 
 
@@ -102,9 +103,6 @@ public class ConsoleApplication {
                 break;
             case 17:
                 Store.displayCategory();
-                break;
-            case 18:
-                System.out.println("Done");
                 break;
             default:
                 System.out.println("Comanda inexistenta!");

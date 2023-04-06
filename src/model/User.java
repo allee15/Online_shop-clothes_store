@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class User {
 
-    private Integer idUser;
-    private String userName;
-    private String password;
-    private String email;
-    private String firstName;
-    private String lastName;
+    protected Integer idUser;
+    protected String userName;
+    protected String password;
+    protected String email;
+    protected String firstName;
+    protected String lastName;
 
 
     public Integer getIdUser() {
