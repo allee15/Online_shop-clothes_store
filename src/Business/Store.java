@@ -357,6 +357,7 @@ public class Store {
     }
 
     public static void displayProduct() {
+        productSortare();
         for (Product product : products) {
             System.out.println(product);
             System.out.println();
