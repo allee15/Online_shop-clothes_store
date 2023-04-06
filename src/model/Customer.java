@@ -1,5 +1,4 @@
 package model;
-import model.Cart;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class Customer extends User{
     private String phone;
     private String address;
 
-
+//    private List<Order> orders;
 
     public String getPhone(){
         return phone;
@@ -32,19 +31,30 @@ public class Customer extends User{
     }
 
     public void setCart(Cart cart){this.cart=cart;}
-    public Customer(String phone, String address, Cart cart){
+
+//    public List<Order> getOrders() {
+//        return orders;
+//    }
+
+
+    public Customer(){
         this.address="";
         this.phone="";
         this.cart=null;
+//        this.orders=new ArrayList<Order>();
+
     }
     public Customer(Integer idUser, String userName, String password, String email, String firstName, String lastName, String phone, String address, Cart cart){
         super(idUser,userName,password,email,firstName, lastName);
         this.phone=phone;
         this.address=address;
         this.cart=cart;
+//        this.orders=orders;
     }
 
-
+//    public void adaugareComanda(Order order) {
+//        orders.add(order);
+//    }
 //    public void addItemToCart(Product product) {
 //        if (cart==null)
 //            cart=new ArrayList<Product>();
@@ -64,6 +74,6 @@ public class Customer extends User{
 
     @Override
     public String toString(){
-        return super.toString()+'\n'+"phone="+getPhone()+'\n'+"address="+getAddress()+'\n';
+        return super.toString()+'\n'+"phone="+getPhone()+'\n'+"address="+getAddress()+'\n'+"cos cumparaturi"+getCart();
     }
 }

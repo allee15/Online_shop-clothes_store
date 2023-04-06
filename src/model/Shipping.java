@@ -11,7 +11,7 @@ public class Shipping {
     private String country;
     private String address;
     private String postalCode;
-    private Date dataLivrare;
+//    private Date dataLivrare;
 
 
     public Integer getIdShipping() {
@@ -34,9 +34,9 @@ public class Shipping {
         return postalCode;
     }
 
-    public Date getDataLivrare() {
-        return dataLivrare;
-    }
+//    public Date getDataLivrare() {
+//        return dataLivrare;
+//    }
 
 
 
@@ -61,19 +61,19 @@ public class Shipping {
         this.postalCode = postalCode;
     }
 
-    public void setDataLivrare(Date dataLivrare) {
-        this.dataLivrare = dataLivrare;
-    }
+//    public void setDataLivrare(Date dataLivrare) {
+//        this.dataLivrare = dataLivrare;
+//    }
 
 
 
-    public Shipping(Integer idShipping, String city, String country, String address, String postalCode, Date dataLivrare){
+    public Shipping(Integer idShipping, String city, String country, String address, String postalCode){
         this.idShipping=idShipping;
         this.city=city;
         this.country=country;
         this.address=address;
         this.postalCode=postalCode;
-        this.dataLivrare=dataLivrare;
+//        this.dataLivrare=dataLivrare;
     }
 
     public Shipping(){
@@ -82,25 +82,25 @@ public class Shipping {
         this.country="";
         this.address="";
         this.postalCode="";
-        this.dataLivrare=new Date();
+//        this.dataLivrare=new Date();
     }
 
     //in functie de data livrarii, estimam ziua sigura a acesteia
-    public Date getDeliveryDate(int estimatedDeliveryTime) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dataLivrare);
-        cal.add(Calendar.DAY_OF_MONTH, estimatedDeliveryTime);
-        return cal.getTime();
-    }
+//    public Date getDeliveryDate(int estimatedDeliveryTime) {
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(dataLivrare);
+//        cal.add(Calendar.DAY_OF_MONTH, estimatedDeliveryTime);
+//        return cal.getTime();
+//    }
 
     //comparam 2 date de livrare
-    public static int compareByDataLivrare(Shipping s1, Shipping s2) {
-        return s1.getDataLivrare().compareTo(s2.getDataLivrare());
-    }
+//    public static int compareByDataLivrare(Shipping s1, Shipping s2) {
+//        return s1.getDataLivrare().compareTo(s2.getDataLivrare());
+//    }
 
 
     @Override
     public String toString(){
-        return "idShipping="+getIdShipping()+'\n'+"city="+getCity()+'\n'+"country="+getCountry()+'\n'+"address="+getAddress()+'\n'+"postal code="+getPostalCode()+'\n'+"data livrarii="+getDataLivrare()+'\n';
+        return "idShipping="+getIdShipping()+'\n'+"city="+getCity()+'\n'+"country="+getCountry()+'\n'+"address="+getAddress()+'\n'+"postal code="+getPostalCode()+'\n';
     }
 }

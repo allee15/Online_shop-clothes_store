@@ -46,6 +46,7 @@ public class Rating {
     }
     @Override
     public String toString(){
-        return "customer="+getCustomer().getFirstName()+'\n'+"stars="+getStars()+'\n'+"comment="+getComment()+'\n';
+        return "customer_name="+getCustomer().getLastName()+'\n'+"stars="+getStars()+'\n'+"comment="+getComment()+'\n';
+//getLastName
     }
 }

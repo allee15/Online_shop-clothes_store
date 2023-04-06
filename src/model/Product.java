@@ -3,8 +3,9 @@ package model;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 public class Product {
 
 
@@ -14,7 +15,7 @@ public class Product {
     private Double price;
     private Boolean disponibility;
     private Integer quantity;
-    private List<Rating> ratings;
+    private Set<Rating> ratings;
     private Category category;
 
 
@@ -37,7 +38,7 @@ public class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public void setRatings(List<Rating> ratings) {
+    public void setRatings(Set<Rating> ratings) {
         this.ratings = ratings;
     }
     public void setCategory(Category category) {
@@ -66,7 +67,7 @@ public class Product {
     public Double getPrice() {
         return price;
     }
-    public List<Rating> getRatings() {
+    public Set<Rating> getRatings() {
         return ratings;
     }
     public Category getCategory() {
@@ -83,7 +84,7 @@ public class Product {
 
 
 
-    public Product(Integer id, String name, String description, Double price, Boolean disponibility, Integer quantity, Category category,ArrayList<Rating>ratings){
+    public Product(Integer id, String name, String description, Double price, Boolean disponibility, Integer quantity, Category category,Set<Rating>ratings){
         this.id=id;
         this.name=name;
         this.description=description;
@@ -101,7 +102,7 @@ public class Product {
         this.disponibility=false;
         this.category=null;
         this.quantity=0;
-        this.ratings=new ArrayList<>();
+        this.ratings=new HashSet<>();
 
 
     }
@@ -109,7 +110,7 @@ public class Product {
 
     @Override
     public String toString(){
-        return  "id="+getId()+'\n'+"name="+getName()+'\n'+"description="+getDescription()+'\n'+"disponibility="+getDisponibility()+'\n'+"price="+getPrice()+'\n'+"quantity"+getQuantity()+'\n'+"ratings="+getRatings()+'\n'+"category="+getCategory()+'\n';
+        return  "id="+getId()+'\n'+"name="+getName()+'\n'+"description="+getDescription()+'\n'+"disponibility="+getDisponibility()+'\n'+"price="+getPrice()+'\n'+"quantity"+getQuantity()+'\n'+"ratings="+getRatings()+'\n'+"category:"+getCategory()+'\n';
     }
 
     @Override

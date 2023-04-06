@@ -11,24 +11,25 @@ import static java.lang.Integer.parseInt;
 
 
 public class Store {
-    public static ArrayList<Product> products=new ArrayList<>();
-    public static ArrayList<Customer> customers=new ArrayList<>();
-    public static ArrayList<Admin> admins=new ArrayList<>();
-    public static ArrayList<Category> categories=new ArrayList<>();
+    public static List<Product> products=new ArrayList<>();
+    public static List<Customer> customers=new ArrayList<>();
+    public static List<Admin> admins=new ArrayList<>();
+    public static List<Category> categories=new ArrayList<>();
 
-    public static ArrayList<Coupon> coupons=new ArrayList<>();
+    public static List<Coupon> coupons=new ArrayList<>();
 
-    public static ArrayList<Rating>  ratings=new ArrayList<>();
-    public static ArrayList<Shipping> shippings=new ArrayList<>();
-    public static ArrayList<Order> orders=new ArrayList<>();
+    public static List<Rating>  ratings=new ArrayList<>();
+    public static List<Shipping> shippings=new ArrayList<>();
+    public static List<Order> orders=new ArrayList<>();
 
-    public static ArrayList<Cart> itemsCarts=new ArrayList<>();
+    public static List<Cart> itemsCarts=new ArrayList<>();
     public static void initializare(){
            Category c1=new Category(2,"Footwear","Terrific");
            Category c2=new Category(1,"Clothing","Awesome");
         categories.add(c1);
         categories.add(c2);
          Cart cart=new Cart();
+
         Customer customer1=new Customer(1,"customer1","123456","customer1@yahoo.com", "cutomer1","customer1","072546548","Str Academiei",cart);
         customers.add(customer1);
         Rating rating1 = new Rating(10,"Super",customer1);
@@ -42,10 +43,7 @@ public class Store {
         Admin a1=new Admin(1,"admin1","123456","admin1@yahoo,com","Denisa","Bucur","admin", "available");
         admins.add(a1);
 
-        Shipping shipping1=new Shipping(1,"Focsani","Romania","Strada Academiei","000000",new Date());
-        shippings.add(shipping1);
-        Order order1= new Order(1,"card",shipping1);
-        orders.add(order1);
+
         Coupon coupon1=new Coupon("012345",20.0, true);
         coupons.add(coupon1);
 
@@ -148,19 +146,8 @@ public class Store {
         String address=scanner.nextLine();
         System.out.println("Dati adresa postala:");
         String postalCode=scanner.nextLine();
-        System.out.println("Dati dataLivrare:");
-        String data1=scanner.nextLine();
 
-        Date dataLivrare = null;
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            dataLivrare = dateFormat.parse(data1);
-        }catch(Exception e){
-            System.out.println("Ati oferit o data gresita");
-        }
-//        31/12/2022
-
-        Shipping shipping_nou=new Shipping(idShipping,city,country,address,postalCode,dataLivrare);
+        Shipping shipping_nou=new Shipping(idShipping,city,country,address,postalCode);
         shippings.add(shipping_nou);
 
     }
@@ -206,13 +193,71 @@ public class Store {
         System.out.println("Dati metoda de plata:");
         String metoda_plata=scanner.nextLine();
 
-        //de adaugat Shipping aici
+        System.out.println("Dati data de livrare in acest format: 'dd/MM/yyyy");
+        String data1=scanner.nextLine();
+
+        Date dataLivrare = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            dataLivrare = dateFormat.parse(data1);
+        }catch(Exception e){
+            System.out.println("Ati oferit o data gresita");
+        }
+//        31/12/2022
+
+        System.out.println("Dati id-ul shippingului:");
+        int idShipping1=0;
+        while (true) {
+            try {
+                idShipping1 = Integer.parseInt(scanner.nextLine());
+                System.out.println("id: " + idShipping1);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+            }
+        }
+        Shipping shipping1 = null;
+        for (Shipping s1 : shippings) {
+            if (s1.getIdShipping()==idShipping1) {
+                shipping1 = s1;
+                break;
+            }
+        }
+
 
         Cart cart=customer.getCart();
         List<Product> produse=cart.getProducts();
-
+        Order order=new Order(idOrder,metoda_plata,shipping1,dataLivrare,produse);
+//        customer.adaugareComanda(order);
+        orders.add(order);
 
     }
+
+    public static void displayOrder(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Dati id-ul comenzii:");
+        int idOrder=0;
+        while (true) {
+            try {
+                idOrder = Integer.parseInt(scanner.nextLine());
+                System.out.println("id: " + idOrder);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+            }
+        }
+        Order order1 = null;
+        for (Order o1 : orders) {
+            if (o1.getIdOrder()==idOrder) {
+                order1 = o1;
+                break;
+            }
+        }
+        System.out.println(order1);
+
+    }
+
     public static void addCustomer(){
         Scanner scanner = new Scanner(System.in);
 
@@ -304,7 +349,7 @@ public class Store {
             System.out.println("Categoria nu a fost gasita.");
 
         }
-        Product product_nou= new Product(id,name,description,price,disponibility,quantity,category,new ArrayList<Rating>());
+        Product product_nou= new Product(id,name,description,price,disponibility,quantity,category,new HashSet<Rating>());
         products.add(product_nou);
 
 
@@ -403,6 +448,42 @@ public class Store {
         cart.adaugareProdus(product);
 
     }
+
+    public static void deleteProductCart(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+
+        System.out.println("Dati numele dumneavoastra");
+        String name_customer=scanner.nextLine();
+        Customer customer = null;
+        for (Customer c1 : customers) {
+            if (c1.getLastName().equalsIgnoreCase(name_customer)) {
+                customer = c1;
+                break;
+            }
+        }
+        if (customer == null) {
+            System.out.println("Clientul nu a fost gasit.");
+
+        }
+        System.out.println("Dati titlul produsului");
+        String name_product=scanner.nextLine();
+        Product product = null;
+        for (Product pr : products) {
+            if (pr.getName().equalsIgnoreCase(name_product)) {
+                product = pr;
+                break;
+            }
+        }
+        if (product == null) {
+            System.out.println("Produsul nu a fost gasit.");
+        }
+
+        Cart cart=customer.getCart();
+        cart.stergeProdus(product);
+
+    }
+
     public static void addCoupon(){
         Scanner scanner = new Scanner(System.in);
         System.out.println();
@@ -478,29 +559,6 @@ public class Store {
 
 
 
-
-
-//    public static void addCoupon(){
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Dati codul cuponului:");
-//        String code=scanner.nextLine();
-//        System.out.println("Este valid cuponul?Selectati:'true' sau 'false'");
-//        Boolean valid= Boolean.valueOf(scanner.nextLine());
-//        System.out.println("Dati procentul de reducere al cuponului");
-//        Double percentage= Double.valueOf(scanner.nextLine());
-//
-//        Coupon cupon_nou= new Coupon(code,percentage,valid);
-//        coupons.add(cupon_nou);
-//
-//    }
-//    public static void displayCoupon(){
-//        for(Coupon coupon:coupons){
-//            System.out.println(coupon);
-//            System.out.println();
-//        }
-//    }
-
-
     public static void displayCart(){
         Scanner scanner = new Scanner(System.in);
         System.out.println();
@@ -521,7 +579,9 @@ public class Store {
         Cart cart=customer.getCart();
         System.out.println(cart);
     }
-
+    public static void productSortare(){
+        Collections.sort(products, new ProductFilter());
+    }
 
 //
 //    public void addProduct(Product product) {

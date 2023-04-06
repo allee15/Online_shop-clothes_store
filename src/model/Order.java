@@ -8,7 +8,7 @@ public class Order {
     //metoda de plata, total
     private Integer idOrder;
     private String metodaPlata;
-//    private Date dataPlasare;
+    private Date dataPlasare;
 
     private List<Product> itemsInOrder;
 
@@ -23,9 +23,9 @@ public class Order {
         return metodaPlata;
     }
 
-//    public Date getDataPlasare() {
-//        return dataPlasare;
-//    }
+    public Date getDataPlasare() {
+        return dataPlasare;
+    }
     public List<Product> getItemsInOrder() {
         return itemsInOrder;
     }
@@ -47,26 +47,31 @@ public class Order {
         this.metodaPlata = metodaPlata;
     }
 
-//    public void setDataPlasare(Date dataPlasare) {
-//        this.dataPlasare = dataPlasare;
-//    }
+    public void setDataPlasare(Date dataPlasare) {
+        this.dataPlasare = dataPlasare;
+    }
+    public void setItemsInOrder(List<Product> itemsInOrder) {
+        this.itemsInOrder = itemsInOrder;
+    }
 
 
 
 
-    public Order(Integer idOrder, String metodaPlata,Shipping shipping){
+    public Order(Integer idOrder, String metodaPlata,Shipping shipping, Date dataPlasare,List<Product>itemsInOrder){
 
         this.idOrder=idOrder;
         this.metodaPlata=metodaPlata;
-//        this.dataPlasare=dataPlasare;
+        this.dataPlasare=dataPlasare;
         this.shipping=shipping;
+        this.itemsInOrder=itemsInOrder;
     }
 
     public Order(){
         this.idOrder=-1;
         this.metodaPlata="card";
-//        this.dataPlasare=new Date();
+        this.dataPlasare=new Date();
         this.shipping=null;
+        this.itemsInOrder=new ArrayList<Product>();
     }
     public void addItem(Product p){
         this.itemsInOrder.add(p);
@@ -87,6 +92,6 @@ public class Order {
 
     @Override
     public String toString(){
-        return "idOrder="+getIdOrder()+'\n'+"metoda de plata="+getMetodaPlata()+'\n'+"shipping="+getShipping()+'\n';
+        return "idOrder="+getIdOrder()+'\n'+"metoda de plata="+getMetodaPlata()+'\n'+"shipping="+getShipping()+'\n'+"dataLivrare="+dataPlasare+'\n'+"produse comanda="+getItemsInOrder()+'\n';
     }
 }
