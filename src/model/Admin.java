@@ -1,5 +1,4 @@
 package model;
-
 import Business.Store;
 
 public final class Admin extends User {

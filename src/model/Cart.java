@@ -67,5 +67,4 @@ public class Cart {
         return "Coupons="+getCoupons()+'\n'+"Prducts="+getProducts()+'\n';
     }
 
-
 }

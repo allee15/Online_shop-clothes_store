@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Rating {
 
     private String comment;
@@ -48,5 +50,11 @@ public class Rating {
     public String toString(){
         return "customer_name="+getCustomer().getLastName()+'\n'+"stars="+getStars()+'\n'+"comment="+getComment()+'\n';
 //getLastName
+    }
+
+    public void NbStars(Integer stars) throws CustomExceptions.RatingException{
+        if(stars < 0 || stars > 5) {
+            throw new CustomExceptions.RatingException("Rating-ul trebuie sa fie un numar natural intre 0 si 5!");
+        }
     }
 }

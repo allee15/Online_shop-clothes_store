@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
     //metoda de plata, total
@@ -93,5 +94,11 @@ public class Order {
     @Override
     public String toString(){
         return "idOrder="+getIdOrder()+'\n'+"metoda de plata="+getMetodaPlata()+'\n'+"shipping="+getShipping()+'\n'+"dataLivrare="+dataPlasare+'\n'+"produse comanda="+getItemsInOrder()+'\n';
+    }
+
+    public void PaymentMethod(String metodaPlata) throws CustomExceptions.OrderException{
+        if(!Objects.equals(metodaPlata, "Cash") && !Objects.equals(metodaPlata, "Card")) {
+            throw new CustomExceptions.OrderException("Alege o metoda de plata existenta!");
+        }
     }
 }

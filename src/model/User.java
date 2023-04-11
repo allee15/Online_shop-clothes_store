@@ -1,5 +1,6 @@
 package model;
 
+
 import java.util.ArrayList;
 
 public class User {
@@ -75,4 +76,27 @@ public class User {
     }
 
 
+    public void LastName(String lastName) throws CustomExceptions.UserException1{
+        if(lastName.length() == 0) {
+            throw new CustomExceptions.UserException1("Introdu un nume valid!");
+        }
+    }
+
+    public void FirstName(String firstName) throws CustomExceptions.UserException2{
+        if(firstName.length() == 0){
+            throw new CustomExceptions.UserException2("Introdu un prenume valid!");
+        }
+    }
+
+    public void UserName(String userName) throws CustomExceptions.UserException3{
+        if(userName.length()==0) throw new CustomExceptions.UserException3("Introdu un username valid!");
+    }
+
+    public void Password(String password) throws CustomExceptions.UserException4{
+        if(password.length()==0) throw new CustomExceptions.UserException4("Introdu o parola!");
+    }
+
+    public void Email(String email) throws CustomExceptions.UserException5{
+        if(email.length()==0) throw new CustomExceptions.UserException5("Introdu un email valid!");
+    }
 }

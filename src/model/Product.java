@@ -133,5 +133,9 @@ public class Product {
         return false;
     }
 
+    public void Stock(Integer stock) throws CustomExceptions.ProductException{
+        if(quantity > stock) throw new CustomExceptions.ProductException("Nu exista stock suficient la acest produs pentru a se realiza comanda!");
+        stock-=quantity;
+    }
 
 }

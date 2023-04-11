@@ -75,5 +75,10 @@ public class Category {
 //            System.out.println(product.getName() + " - " + product.getPrice());
 //        }}
 
+    public void LenDescription(String description) throws CustomExceptions.CategoryException{
+        if (description.length() == 0) throw new CustomExceptions.CategoryException("Trebuie sa adaugi o descriere!");
+
+    }
+
 }
 

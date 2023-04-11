@@ -76,4 +76,10 @@ public class Customer extends User{
     public String toString(){
         return super.toString()+'\n'+"phone="+getPhone()+'\n'+"address="+getAddress()+'\n'+"cos cumparaturi"+getCart();
     }
+
+    public void PersonalDetails(String phone) throws CustomExceptions.CustomerException{
+        if(phone.length() != 12) throw new CustomExceptions.CustomerException("Numarul de telefon introdus este invalid! ");
+
+    }
+
 }

@@ -103,4 +103,28 @@ public class Shipping {
     public String toString(){
         return "idShipping="+getIdShipping()+'\n'+"city="+getCity()+'\n'+"country="+getCountry()+'\n'+"address="+getAddress()+'\n'+"postal code="+getPostalCode()+'\n';
     }
+
+    public void AddressDelivery(String address) throws CustomExceptions.ShippingException1{
+        if(address.length() == 0) {
+            throw new CustomExceptions.ShippingException1("Introdu o adresa valida!");
+        }
+    }
+
+    public void CityDelivery(String city) throws CustomExceptions.ShippingException2{
+        if(city.length() == 0) {
+            throw new CustomExceptions.ShippingException2("Introdu un oras valid!");
+        }
+    }
+
+    public void CountryDelivery(String country) throws CustomExceptions.ShippingException3{
+        if(country.length() == 0) {
+            throw new CustomExceptions.ShippingException3("Introdu o tara valida!");
+        }
+    }
+
+    public void PostalCodeDelivery(String postalCode) throws CustomExceptions.ShippingException4{
+        if(postalCode.length() == 0 || postalCode.length() >6) {
+            throw new CustomExceptions.ShippingException4("Introdu un cod postal valid!");
+        }
+    }
 }
