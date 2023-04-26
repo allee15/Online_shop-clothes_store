@@ -96,9 +96,17 @@ public class Order {
         return "idOrder="+getIdOrder()+'\n'+"metoda de plata="+getMetodaPlata()+'\n'+"shipping="+getShipping()+'\n'+"dataLivrare="+dataPlasare+'\n'+"produse comanda="+getItemsInOrder()+'\n';
     }
 
-    public void PaymentMethod(String metodaPlata) throws CustomExceptions.OrderException{
+    public void PaymentMethod(String metodaPlata) throws OrderException{
         if(!Objects.equals(metodaPlata, "Cash") && !Objects.equals(metodaPlata, "Card")) {
-            throw new CustomExceptions.OrderException("Alege o metoda de plata existenta!");
+            throw new OrderException("Alege o metoda de plata existenta!");
+        }
+    }
+
+    public static class OrderException extends Exception {
+        public OrderException(String message) {
+            super(message);
         }
     }
 }
+
+

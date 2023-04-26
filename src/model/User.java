@@ -73,27 +73,56 @@ public class User {
     }
 
 
-    public void LastName(String lastName) throws CustomExceptions.UserException1{
+    public void LastName(String lastName) throws UserException1{
         if(lastName.length() == 0) {
-            throw new CustomExceptions.UserException1("Introdu un nume valid!");
+            throw new UserException1("Introdu un nume valid!");
         }
     }
 
-    public void FirstName(String firstName) throws CustomExceptions.UserException2{
+    public void FirstName(String firstName) throws UserException2{
         if(firstName.length() == 0){
-            throw new CustomExceptions.UserException2("Introdu un prenume valid!");
+            throw new UserException2("Introdu un prenume valid!");
         }
     }
 
-    public void UserName(String userName) throws CustomExceptions.UserException3{
-        if(userName.length()==0) throw new CustomExceptions.UserException3("Introdu un username valid!");
+    public void UserName(String userName) throws UserException3{
+        if(userName.length()==0) throw new UserException3("Introdu un username valid!");
     }
 
-    public void Password(String password) throws CustomExceptions.UserException4{
-        if(password.length()==0) throw new CustomExceptions.UserException4("Introdu o parola!");
+    public void Password(String password) throws UserException4{
+        if(password.length()==0) throw new UserException4("Introdu o parola!");
     }
 
-    public void Email(String email) throws CustomExceptions.UserException5{
-        if(email.length()==0) throw new CustomExceptions.UserException5("Introdu un email valid!");
+    public void Email(String email) throws UserException5{
+        if(email.length()==0) throw new UserException5("Introdu un email valid!");
+    }
+
+
+
+    public static class UserException1 extends Exception {
+        public UserException1(String message) {
+            super(message);
+        }
+    }
+
+    public static class UserException2 extends Exception {
+        public UserException2(String message) {
+            super(message);
+        }
+    }
+    public static class UserException3 extends Exception {
+        public UserException3(String message) {
+            super(message);
+        }
+    }
+    public static class UserException4 extends Exception {
+        public UserException4(String message) {
+            super(message);
+        }
+    }
+    public static class UserException5 extends Exception {
+        public UserException5(String message) {
+            super(message);
+        }
     }
 }

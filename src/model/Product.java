@@ -1,10 +1,7 @@
 
 package model;
 
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 public class Product {
 
@@ -133,9 +130,18 @@ public class Product {
         return false;
     }
 
-    public void Stock(Integer stock) throws CustomExceptions.ProductException{
-        if(quantity > stock) throw new CustomExceptions.ProductException("Nu exista stock suficient la acest produs pentru a se realiza comanda!");
+    public void Stock(Integer stock) throws ProductException{
+        if(quantity > stock) throw new ProductException("Nu exista stock suficient la acest produs pentru a se realiza comanda!");
         stock-=quantity;
+    }
+
+
+
+
+    public static class ProductException extends Exception {
+        public ProductException(String message) {
+            super(message);
+        }
     }
 
 }

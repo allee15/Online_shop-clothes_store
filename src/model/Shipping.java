@@ -1,9 +1,5 @@
 package model;
 
-import java.util.Date;
-import java.util.Calendar;
-import java.util.Objects;
-import java.time.LocalDate;
 public class Shipping {
 
     private Integer idShipping;
@@ -104,27 +100,51 @@ public class Shipping {
         return "idShipping="+getIdShipping()+'\n'+"city="+getCity()+'\n'+"country="+getCountry()+'\n'+"address="+getAddress()+'\n'+"postal code="+getPostalCode()+'\n';
     }
 
-    public void AddressDelivery(String address) throws CustomExceptions.ShippingException1{
+    public void AddressDelivery(String address) throws ShippingException1{
         if(address.length() == 0) {
-            throw new CustomExceptions.ShippingException1("Introdu o adresa valida!");
+            throw new ShippingException1("Introdu o adresa valida!");
         }
     }
 
-    public void CityDelivery(String city) throws CustomExceptions.ShippingException2{
+    public void CityDelivery(String city) throws ShippingException2{
         if(city.length() == 0) {
-            throw new CustomExceptions.ShippingException2("Introdu un oras valid!");
+            throw new ShippingException2("Introdu un oras valid!");
         }
     }
 
-    public void CountryDelivery(String country) throws CustomExceptions.ShippingException3{
+    public void CountryDelivery(String country) throws ShippingException3{
         if(country.length() == 0) {
-            throw new CustomExceptions.ShippingException3("Introdu o tara valida!");
+            throw new ShippingException3("Introdu o tara valida!");
         }
     }
 
-    public void PostalCodeDelivery(String postalCode) throws CustomExceptions.ShippingException4{
+    public void PostalCodeDelivery(String postalCode) throws ShippingException4{
         if(postalCode.length() == 0 || postalCode.length() >6) {
-            throw new CustomExceptions.ShippingException4("Introdu un cod postal valid!");
+            throw new ShippingException4("Introdu un cod postal valid!");
+        }
+    }
+
+    public static class ShippingException1 extends Exception{
+        public ShippingException1(String message){
+            super(message);
+        }
+    }
+
+    public static class ShippingException2 extends Exception{
+        public ShippingException2(String message){
+            super(message);
+        }
+    }
+
+    public static class ShippingException3 extends Exception{
+        public ShippingException3(String message){
+            super(message);
+        }
+    }
+
+    public static class ShippingException4 extends Exception{
+        public ShippingException4(String message){
+            super(message);
         }
     }
 }

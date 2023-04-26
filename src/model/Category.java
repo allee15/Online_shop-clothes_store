@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Category {
 
     private Integer idCateg;
@@ -75,10 +73,16 @@ public class Category {
 //            System.out.println(product.getName() + " - " + product.getPrice());
 //        }}
 
-    public void LenDescription(String description) throws CustomExceptions.CategoryException{
-        if (description.length() == 0) throw new CustomExceptions.CategoryException("Trebuie sa adaugi o descriere!");
+    public void LenDescription(String description) throws CategoryException{
+        if (description.length() == 0) throw new CategoryException("Trebuie sa adaugi o descriere!");
 
     }
 
+
+    public static class CategoryException extends Exception{
+        public CategoryException(String message){
+            super(message);
+        }
+    }
 }
 

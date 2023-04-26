@@ -1,6 +1,4 @@
 package model;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Customer extends User{
 //    private ArrayList<Product> cart;
@@ -77,9 +75,16 @@ public class Customer extends User{
         return super.toString()+'\n'+"phone="+getPhone()+'\n'+"address="+getAddress()+'\n'+"cos cumparaturi"+getCart();
     }
 
-    public void PersonalDetails(String phone) throws CustomExceptions.CustomerException{
-        if(phone.length() != 12) throw new CustomExceptions.CustomerException("Numarul de telefon introdus este invalid! ");
+    public void PersonalDetails(String phone) throws CustomerException{
+        if(phone.length() != 12) throw new CustomerException("Numarul de telefon introdus este invalid! ");
 
+    }
+
+
+    public static class CustomerException extends Exception {
+        public CustomerException(String message) {
+            super(message);
+        }
     }
 
 }

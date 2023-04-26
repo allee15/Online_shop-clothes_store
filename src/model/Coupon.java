@@ -63,8 +63,15 @@ public class Coupon {
         return "Code="+getCode()+'\n'+"percentage="+getPercentage()+'\n'+"valid="+getValid()+"email"+'\n';
     }
 
-    public void Percentage(Double percentage) throws CustomExceptions.CouponException{
-        if (percentage <= 0) throw new CustomExceptions.CouponException("Procentul de reducere nu poate fi 0 sau mai putin!");
+    public void Percentage(Double percentage) throws CouponException{
+        if (percentage <= 0) throw new CouponException("Procentul de reducere nu poate fi 0 sau mai putin!");
 
+    }
+
+
+    public static class CouponException extends Exception{
+        public CouponException(String message){
+            super(message);
+        }
     }
 }
