@@ -1,0 +1,19 @@
+----------------------------------------------------------------
+Thu Apr 27 16:58:13 EEST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0187-c301-e122-0000077b2d98 
+on database directory D:\FACULTATE\java\PAO\Online_shop-clothes_store\barbieDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4d7e1886 
+Loaded from file:/D:/db-derby-10.16.1.1-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=18.0.2.1+1-1
+user.dir=D:\FACULTATE\java\PAO\Online_shop-clothes_store
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Apr 27 16:58:20 EEST 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Thu Apr 27 16:58:20 EEST 2023:
+Shutting down instance a816c00e-0187-c301-e122-0000077b2d98 on database directory D:\FACULTATE\java\PAO\Online_shop-clothes_store\barbieDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4d7e1886 
+----------------------------------------------------------------
