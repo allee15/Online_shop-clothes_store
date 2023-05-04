@@ -1,7 +1,31 @@
 
 import Business.Store;
 import java.util.Scanner;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class ConsoleApplication {
+
+    public static void CSVFile(String numeActiune) {
+        Date timestamp = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String timestampString = dateFormat.format(timestamp);
+        try {
+            FileWriter fileWriter = new FileWriter("audit.csv", true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.printf("%s,%s\n", numeActiune, timestampString);
+            printWriter.close();
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea in fisierul CSV: " + e.getMessage());
+        }
+    }
+
+
     private static void comenzi() {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("My barbie store");
@@ -63,22 +87,28 @@ public class ConsoleApplication {
         switch (comandaAdmin){
             case 1:
                 Store.addCategory();
+                CSVFile("Adding a category as admin");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 2:
                 Store.addProduct();
+                CSVFile("ADding a product as admin");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 3:
                 Store.displayProduct();
+                CSVFile("Displaying a product as admin");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 4:
                 Store.displayCustomer();
+                CSVFile("Displaying a customer as admin");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 5:
                 Store.displayCategory();
+                CSVFile("Displaying a category as admin");
+                System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 0:
                 break;
@@ -116,53 +146,68 @@ public class ConsoleApplication {
         switch (comandaCustomer){
             case 1:
                 Store.displayProduct();
+                CSVFile("Displaying a product as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 2:
                 Store.addRating();
+                CSVFile("Adding a rating as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 3:
                 Store.addProductCart();
+                CSVFile("Adding a product to cart as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 4:
                 Store.deleteProductCart();
+                CSVFile("Deleting a product from cart as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 5:
                 Store.addCoupon();
+                CSVFile("Adding a coupon as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 6:
                 Store.AplicareReducere();
+                CSVFile("Using a coupon as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 7:
                 Store.displayCart();
+                CSVFile("Displayng the cart as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 8:
                 Store.addShipping();
+                CSVFile("Add a shipping as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 9:
                 Store.addOrder();
+                CSVFile("Placing an order as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 10:
                 Store.displayOrder();
+                CSVFile("Displaying order details as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 11:
                 Store.displayCustomer();
+                CSVFile("Displaying self details as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 12:
                 Store.displayAdmin();
+                CSVFile("Displaying admin details as customer");
+                System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 13:
                 Store.displayCategory();
+                CSVFile("Displaying a category details as customers");
+                System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 0:
                 break;
