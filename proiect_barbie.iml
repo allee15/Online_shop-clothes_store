@@ -12,7 +12,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../db-derby-10.16.1.1-bin/lib/derby.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../db-derby-10.16.1.1-bin/lib/derbyclient.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
