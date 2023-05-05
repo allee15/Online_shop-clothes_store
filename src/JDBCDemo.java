@@ -10,7 +10,7 @@ public class JDBCDemo {
 
             statememt = connection.createStatement();
 
-            String sql = "INSERT INTO admin" + "(role, status)" + "Values('owner','available')";
+            String sql = "INSERT INTO user" + "(iduser , userName, password, email,firstName, lastName)" + "Values('1','anonymus123','mereueu123456','anonimat@gmail.com','Mircea', 'Mirela')";
 
             statememt.execute(sql);
 
