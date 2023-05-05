@@ -16,7 +16,7 @@
       <console name="BarbieConnection" type="STANDARD" schema="database" session="Main" />
     </connection>
     <connection id="46c78d83-8d09-4d72-ab4b-a908575b667b">
-      <console name="MySQLConnection" type="STANDARD" schema="barbieshop" session="Main" />
+      <console name="MySQLConnection" type="STANDARD" schema="barbieshop" session="Main"><![CDATA[select * from admin;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -27,6 +27,7 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="46c78d83-8d09-4d72-ab4b-a908575b667b" dataset="barbieshop.cart" active-filter-id="" />
+    <filter-actions connection-id="46c78d83-8d09-4d72-ab4b-a908575b667b" dataset="barbieshop.admin" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
