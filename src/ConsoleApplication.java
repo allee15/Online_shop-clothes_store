@@ -56,9 +56,11 @@ public class ConsoleApplication {
                 System.out.println("                          Sayonara!                        ");
                 return;
             case 1:
+                Store.addAdmin();
                 runAsAdmin();
                 break;
             case 2:
+                Store.addCustomer();
                 runAsCustomer();
                 break;
             default:
@@ -69,7 +71,7 @@ public class ConsoleApplication {
     }}
 
     public static void runAsAdmin(){
-        Store.addAdmin();
+
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Alege optiunea dorita, din nou, apasand tasta corespunzatoare: ");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -92,7 +94,7 @@ public class ConsoleApplication {
                 break;
             case 2:
                 Store.addProduct();
-                CSVFile("ADding a product as admin");
+                CSVFile("Adding a product as admin");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 3:
@@ -119,7 +121,6 @@ public class ConsoleApplication {
 
 
     public static void runAsCustomer(){
-        Store.addCustomer();
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Alege optiunea dorita, din nou, apasand tasta corespunzatoare: ");
