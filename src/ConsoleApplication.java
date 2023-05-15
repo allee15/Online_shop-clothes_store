@@ -1,5 +1,10 @@
 
 import Business.Store;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 import java.io.FileWriter;
@@ -10,6 +15,7 @@ import java.util.Date;
 
 
 public class ConsoleApplication {
+
 
     public static void CSVFile(String numeActiune) {
         Date timestamp = new Date();
@@ -43,7 +49,7 @@ public class ConsoleApplication {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException {
 
 
         Store.initializare();
@@ -70,7 +76,7 @@ public class ConsoleApplication {
 
     }}
 
-    public static void runAsAdmin(){
+    public static void runAsAdmin() throws SQLException {
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Alege optiunea dorita, din nou, apasand tasta corespunzatoare: ");

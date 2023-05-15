@@ -2,11 +2,12 @@ package Business;
 
 import model.*;
 
+import java.sql.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static java.lang.Double.parseDouble;
-import static java.lang.Integer.*;
 import static java.lang.Integer.parseInt;
 
 
@@ -23,6 +24,26 @@ public class Store {
     public static List<Order> orders=new ArrayList<>();
 
     public static List<Cart> itemsCarts=new ArrayList<>();
+
+
+    public static Connection JDBC() throws SQLException {
+
+        Connection connection = null;
+        try{
+            connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/barbieshop", "root", "Sparky2002!");
+            connection.setAutoCommit(false);
+            System.out.println("Succes!");
+            return connection;
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return connection;
+    }
+
+
     public static void initializare(){
            Category c1=new Category(2,"Footwear","Terrific");
            Category c2=new Category(1,"Clothing","Awesome");
@@ -50,26 +71,23 @@ public class Store {
 
     }
 
-    public static void addCategory(){
+    static int idCateg = 1;
+    public static void addCategory() throws SQLException {
             Scanner scanner = new Scanner(System.in);
             System.out.println();
-             System.out.println("Dati id-ul categoriei:");
-             int idCateg=0;
-             while (true) {
-                 try {
-                idCateg = Integer.parseInt(scanner.nextLine());
-                System.out.println("id: " + idCateg);
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter an integer.");
-            }
-        }
-
+            idCateg+=1;
             System.out.println("Dati numele categoriei");
             String name=scanner.nextLine();
             System.out.println("Dati descrierea categoriei");
             String description=scanner.nextLine();
             Category categorie_noua= new Category(idCateg,name,description);
+            String sql = "INSERT INTO category ( idcategory, name, description) VALUES " + " (?,?,?);";
+            PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+            preparedStatement.setInt(1, idCateg);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3,description);
+            preparedStatement.addBatch();
+            JDBC().commit();
             categories.add(categorie_noua);
 
     }
