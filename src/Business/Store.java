@@ -81,11 +81,11 @@ public class Store {
             System.out.println("Dati descrierea categoriei");
             String description=scanner.nextLine();
             Category categorie_noua= new Category(idCateg,name,description);
-            String sql = "INSERT INTO category ( idcategory, name, description) VALUES " + " (?,?,?);";
+            String sql = "INSERT INTO category ( idcategory,description, name) VALUES " + " (?,?,?);";
             PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
             preparedStatement.setInt(1, idCateg);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3,description);
+            preparedStatement.setString(2, description);
+            preparedStatement.setString(3,name);
             preparedStatement.addBatch();
             JDBC().commit();
             categories.add(categorie_noua);
@@ -101,10 +101,9 @@ public class Store {
     //        categories.remove(category);
     //    }
 
-    public static void addAdmin(){
+    public static void addAdmin() throws SQLException {
             Scanner scanner=new Scanner(System.in);
             System.out.println();
-            System.out.println("Dati id-ul adminului:");
             int id=0;
              while (true) {
               try {
@@ -120,17 +119,19 @@ public class Store {
         String username=scanner.nextLine();
         System.out.println("Dati parola adminului:");
         String password=scanner.nextLine();
-        System.out.println("Dati emailul adminului:");
-        String email=scanner.nextLine();
-        System.out.println("Dati prenumele adminului:");
-        String firstName=scanner.nextLine();
-        System.out.println("Dati numele de familie al adminului:");
-        String lastName=scanner.nextLine();
-        System.out.println("Dati rolul adminului:");
-        String role=scanner.nextLine();
-        System.out.println("Dati statusul adminului:");
-        String status=scanner.nextLine();
+        String email, firstName, lastName, role, status;
+        email = "admin@test.com";
+        firstName = "Alexia";
+        lastName = "Aldea";
+        role = "sefa";
+        status = "available";
         Admin admin_nou= new Admin(id,username,password,email,firstName,lastName,role,status);
+        String sql = "INSERT INTO admin (  role, status) VALUES " + " (?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setString(1, role);
+        preparedStatement.setString(2, status);
+        preparedStatement.addBatch();
+        JDBC().commit();
         admins.add(admin_nou);
     }
     public static void displayAdmin(){
@@ -141,7 +142,7 @@ public class Store {
     }
 
 
-    public static void addShipping(){
+    public static void addShipping() throws SQLException {
         Scanner scanner=new Scanner(System.in);
         System.out.println();
         System.out.println("Dati id-ul shippingului:");
@@ -166,6 +167,15 @@ public class Store {
         String postalCode=scanner.nextLine();
 
         Shipping shipping_nou=new Shipping(idShipping,city,country,address,postalCode);
+        String sql = "INSERT INTO shipping ( idShipping,address, city, country, address, postalCode) VALUES " + " (?,?,?,?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setInt(1, idShipping);
+        preparedStatement.setString(2, address);
+        preparedStatement.setString(3,city);
+        preparedStatement.setString(4, country);
+        preparedStatement.setString(5, postalCode);
+        preparedStatement.addBatch();
+        JDBC().commit();
         shippings.add(shipping_nou);
 
     }
@@ -178,7 +188,7 @@ public class Store {
     }
 
 
-    public static void addOrder(){
+    public static void addOrder() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("Dati id-ul comenzii:");
@@ -243,10 +253,22 @@ public class Store {
         }
 
 
+        assert customer != null;
         Cart cart=customer.getCart();
         List<Product> produse=cart.getProducts();
         Order order=new Order(idOrder,metoda_plata,shipping1,dataLivrare,produse);
 //        customer.adaugareComanda(order);
+        String sql = "INSERT INTO order ( idOrder, dataLivrare, produse,metoda_plata,shipping1) VALUES " + " (?,?,?,?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setInt(1, idOrder);
+        assert dataLivrare != null;
+        preparedStatement.setString(2, dataLivrare.toString());
+        preparedStatement.setString(3,produse.toString());
+        preparedStatement.setString(4, dataLivrare.toString());
+        assert shipping1 != null;
+        preparedStatement.setString(5, shipping1.toString());
+        preparedStatement.addBatch();
+        JDBC().commit();
         orders.add(order);
 
     }
@@ -276,7 +298,7 @@ public class Store {
 
     }
 
-    public static void addCustomer(){
+    public static void addCustomer() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
@@ -309,6 +331,13 @@ public class Store {
         String address=scanner.nextLine();
 
         Customer client_nou= new Customer(idUser,username,password,email,firstName,lastName,phone,address,new Cart());
+        String sql = "INSERT INTO customer ( address, new Cart(), phone) VALUES " + " (?,?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setString(1, address);
+        preparedStatement.setString(2, String.valueOf(new Cart()));
+        preparedStatement.setString(3, phone);
+        preparedStatement.addBatch();
+        JDBC().commit();
         customers.add(client_nou);
 
     }
@@ -319,7 +348,7 @@ public class Store {
             System.out.println();
         }
     }
-    public static void addProduct(){
+    public static void addProduct() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
 
@@ -368,6 +397,18 @@ public class Store {
 
         }
         Product product_nou= new Product(id,name,description,price,disponibility,quantity,category,new HashSet<Rating>());
+        String sql = "INSERT INTO product ( id,category,description,disponibility, name, price,quantity,new HashSet<Rating>()) VALUES " + " (?,?,?,?,?,?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, String.valueOf(category));
+        preparedStatement.setString(3,description);
+        preparedStatement.setBoolean(4, disponibility);
+        preparedStatement.setString(5, name);
+        preparedStatement.setDouble(6,price);
+        preparedStatement.setDouble(7, quantity);
+        preparedStatement.setString(8, String.valueOf(new HashSet<Rating>()));
+        preparedStatement.addBatch();
+        JDBC().commit();
         products.add(product_nou);
 
 
@@ -384,7 +425,7 @@ public class Store {
 
 
 
-    public static void addRating(){
+    public static void addRating() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
@@ -429,6 +470,13 @@ public class Store {
         }
 
         Rating rating_nou=new Rating(nr,comment,customer);
+        String sql = "INSERT INTO rating ( nr,comment,customer) VALUES " + " (?,?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setInt(1, nr);
+        preparedStatement.setString(2, comment);
+        preparedStatement.setString(3, String.valueOf(customer));
+        preparedStatement.addBatch();
+        JDBC().commit();
         product.addRatingProduct(rating_nou);
         ratings.add(rating_nou);
     }
@@ -503,7 +551,8 @@ public class Store {
 
     }
 
-    public static void addCoupon(){
+    static int idcoupon =1;
+    public static void addCoupon() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
@@ -540,6 +589,15 @@ public class Store {
 
 
         Coupon cupon_nou= new Coupon(code,percentage,valid);
+        idcoupon++;
+        String sql = "INSERT INTO coupon ( idcoupon,code,percentage,valid) VALUES " + " (?,?,?,?);";
+        PreparedStatement preparedStatement = JDBC().prepareStatement(sql);
+        preparedStatement.setInt(1, idcoupon);
+        preparedStatement.setString(2, code);
+        preparedStatement.setDouble(3,percentage);
+        preparedStatement.setBoolean(4, valid);
+        preparedStatement.addBatch();
+        JDBC().commit();
         coupons.add(cupon_nou);
         Cart cart=customer.getCart();
         cart.adaugareCoupon(cupon_nou);

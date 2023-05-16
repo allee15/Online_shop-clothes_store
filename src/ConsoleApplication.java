@@ -126,7 +126,7 @@ public class ConsoleApplication {
     }
 
 
-    public static void runAsCustomer(){
+    public static void runAsCustomer() throws SQLException {
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Alege optiunea dorita, din nou, apasand tasta corespunzatoare: ");
