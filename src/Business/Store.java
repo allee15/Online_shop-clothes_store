@@ -1,133 +1,139 @@
 package Business;
 
+import Database.JDBCDemo;
 import model.*;
 
+import java.sql.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static java.lang.Double.parseDouble;
-import static java.lang.Integer.*;
 import static java.lang.Integer.parseInt;
 
 
 public class Store {
-    public static List<Product> products=new ArrayList<>();
-    public static List<Customer> customers=new ArrayList<>();
-    public static List<Admin> admins=new ArrayList<>();
-    public static List<Category> categories=new ArrayList<>();
+    public static List<Product> products = new ArrayList<>();
+    public static List<Customer> customers = new ArrayList<>();
+    public static List<Admin> admins = new ArrayList<>();
+    public static List<Category> categories = new ArrayList<>();
 
-    public static List<Coupon> coupons=new ArrayList<>();
+    public static List<Coupon> coupons = new ArrayList<>();
 
-    public static List<Rating>  ratings=new ArrayList<>();
-    public static List<Shipping> shippings=new ArrayList<>();
-    public static List<Order> orders=new ArrayList<>();
+    public static List<Rating> ratings = new ArrayList<>();
+    public static List<Shipping> shippings = new ArrayList<>();
+    public static List<Order> orders = new ArrayList<>();
 
-    public static List<Cart> itemsCarts=new ArrayList<>();
-    public static void initializare(){
-           Category c1=new Category(2,"Footwear","Terrific");
-           Category c2=new Category(1,"Clothing","Awesome");
+    public static List<Cart> itemsCarts = new ArrayList<>();
+
+    static Connection connection = JDBCDemo.getConnection();
+
+
+    public static void initializare() {
+        Category c1 = new Category(2, "Footwear", "Terrific");
+        Category c2 = new Category(1, "Clothing", "Awesome");
         categories.add(c1);
         categories.add(c2);
-         Cart cart=new Cart();
+        Cart cart = new Cart();
 
-        Customer customer1=new Customer(1,"customer1","123456","customer1@yahoo.com", "cutomer1","customer1","072546548","Str Academiei",cart);
+        Customer customer1 = new Customer(1, "customer1", "123456", "customer1@yahoo.com", "cutomer1", "customer1", "072546548", "Str Academiei", cart);
         customers.add(customer1);
-        Rating rating1 = new Rating(10,"Super",customer1);
+        Rating rating1 = new Rating(10, "Super", customer1);
         ratings.add(rating1);
-        Product p1=new Product();
+        Product p1 = new Product();
         p1.addRatingProduct(rating1);
         products.add(p1);
 //        product.addRating(
 //        Product p1=new Product(1,"shirt","frumos",1.0,true,2, c1);
 //        products.add(p1);
-        Admin a1=new Admin(1,"admin1","123456","admin1@yahoo,com","Denisa","Bucur","admin", "available");
+        Admin a1 = new Admin(1, "admin1", "123456", "admin1@yahoo,com", "Denisa", "Bucur", "admin", "available");
         admins.add(a1);
 
 
-        Coupon coupon1=new Coupon("012345",20.0, true);
+        Coupon coupon1 = new Coupon("012345", 20.0, true);
         coupons.add(coupon1);
 
 
     }
 
-    public static void addCategory(){
-            Scanner scanner = new Scanner(System.in);
+    static int idCateg = 1;
+
+    public static void addCategory() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        idCateg += 1;
+        System.out.println("Dati numele categoriei");
+        String name = scanner.nextLine();
+        System.out.println("Dati descrierea categoriei");
+        String description = scanner.nextLine();
+        Category categorie_noua = new Category(idCateg, name, description);
+        String sql = "INSERT INTO category ( idcategory,description, name) VALUES " + " (?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, idCateg);
+        preparedStatement.setString(2, description);
+        preparedStatement.setString(3, name);
+        preparedStatement.executeUpdate();
+
+        categories.add(categorie_noua);
+
+    }
+
+    public static void displayCategory() {
+        for (Category category : categories) {
+            System.out.println(category);
             System.out.println();
-             System.out.println("Dati id-ul categoriei:");
-             int idCateg=0;
-             while (true) {
-                 try {
-                idCateg = Integer.parseInt(scanner.nextLine());
-                System.out.println("id: " + idCateg);
+        }
+    }
+    //    public void removeCategory(Category category) {
+    //        categories.remove(category);
+    //    }
+
+    public static void addAdmin() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        int id = 0;
+        while (true) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                System.out.println("id: " + id);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter an integer.");
             }
         }
 
-            System.out.println("Dati numele categoriei");
-            String name=scanner.nextLine();
-            System.out.println("Dati descrierea categoriei");
-            String description=scanner.nextLine();
-            Category categorie_noua= new Category(idCateg,name,description);
-            categories.add(categorie_noua);
-
-    }
-    public static void displayCategory(){
-            for(Category category:categories){
-                System.out.println(category);
-                System.out.println();
-            }
-    }
-    //    public void removeCategory(Category category) {
-    //        categories.remove(category);
-    //    }
-
-    public static void addAdmin(){
-            Scanner scanner=new Scanner(System.in);
-            System.out.println();
-            System.out.println("Dati id-ul adminului:");
-            int id=0;
-             while (true) {
-              try {
-                  id = Integer.parseInt(scanner.nextLine());
-                  System.out.println("id: " + id);
-                  break;
-              } catch (NumberFormatException e) {
-                  System.out.println("Invalid input. Please enter an integer.");
-              }
-          }
-
         System.out.println("Dati username-ul adminului:");
-        String username=scanner.nextLine();
+        String username = scanner.nextLine();
         System.out.println("Dati parola adminului:");
-        String password=scanner.nextLine();
-        System.out.println("Dati emailul adminului:");
-        String email=scanner.nextLine();
-        System.out.println("Dati prenumele adminului:");
-        String firstName=scanner.nextLine();
-        System.out.println("Dati numele de familie al adminului:");
-        String lastName=scanner.nextLine();
-        System.out.println("Dati rolul adminului:");
-        String role=scanner.nextLine();
-        System.out.println("Dati statusul adminului:");
-        String status=scanner.nextLine();
-        Admin admin_nou= new Admin(id,username,password,email,firstName,lastName,role,status);
+        String password = scanner.nextLine();
+        String email, firstName, lastName, role, status;
+        email = "admin@test.com";
+        firstName = "Alexia";
+        lastName = "Aldea";
+        role = "sefa";
+        status = "available";
+        Admin admin_nou = new Admin(id, username, password, email, firstName, lastName, role, status);
+        String sql = "INSERT INTO admin (  role, status) VALUES " + " (?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, role);
+        preparedStatement.setString(2, status);
+        preparedStatement.executeUpdate();
         admins.add(admin_nou);
     }
-    public static void displayAdmin(){
-        for(Admin admin:admins){
+
+    public static void displayAdmin() {
+        for (Admin admin : admins) {
             System.out.println(admin);
             System.out.println();
         }
     }
 
 
-    public static void addShipping(){
-        Scanner scanner=new Scanner(System.in);
+    public static void addShipping() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("Dati id-ul shippingului:");
-        int idShipping=0;
+        int idShipping = 0;
         while (true) {
             try {
                 idShipping = Integer.parseInt(scanner.nextLine());
@@ -139,32 +145,40 @@ public class Store {
         }
 
         System.out.println("Dati orasul in care se doreste livrarea:");
-        String city=scanner.nextLine();
+        String city = scanner.nextLine();
         System.out.println("Dati tara in care se doreste livrarea:");
-        String country=scanner.nextLine();
+        String country = scanner.nextLine();
         System.out.println("Dati adresa locuintei:");
-        String address=scanner.nextLine();
+        String address = scanner.nextLine();
         System.out.println("Dati adresa postala:");
-        String postalCode=scanner.nextLine();
+        String postalCode = scanner.nextLine();
 
-        Shipping shipping_nou=new Shipping(idShipping,city,country,address,postalCode);
+        Shipping shipping_nou = new Shipping(idShipping, city, country, address, postalCode);
+        String sql = "INSERT INTO shipping ( idShipping,address, city, country, address, postalCode) VALUES " + " (?,?,?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, idShipping);
+        preparedStatement.setString(2, address);
+        preparedStatement.setString(3, city);
+        preparedStatement.setString(4, country);
+        preparedStatement.setString(5, postalCode);
+        preparedStatement.executeUpdate();
         shippings.add(shipping_nou);
 
     }
 
-    public static void displayShipping(){
-        for(Shipping shipping:shippings){
+    public static void displayShipping() {
+        for (Shipping shipping : shippings) {
             System.out.println(shipping);
             System.out.println();
         }
     }
 
 
-    public static void addOrder(){
+    public static void addOrder() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("Dati id-ul comenzii:");
-        int idOrder=0;
+        int idOrder = 0;
         while (true) {
             try {
                 idOrder = Integer.parseInt(scanner.nextLine());
@@ -177,7 +191,7 @@ public class Store {
 
 
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -191,22 +205,22 @@ public class Store {
         }
 
         System.out.println("Dati metoda de plata:");
-        String metoda_plata=scanner.nextLine();
+        String metoda_plata = scanner.nextLine();
 
         System.out.println("Dati data de livrare in acest format: 'dd/MM/yyyy");
-        String data1=scanner.nextLine();
+        String data1 = scanner.nextLine();
 
         Date dataLivrare = null;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             dataLivrare = dateFormat.parse(data1);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Ati oferit o data gresita");
         }
 //        31/12/2022
 
         System.out.println("Dati id-ul shippingului:");
-        int idShipping1=0;
+        int idShipping1 = 0;
         while (true) {
             try {
                 idShipping1 = Integer.parseInt(scanner.nextLine());
@@ -218,26 +232,38 @@ public class Store {
         }
         Shipping shipping1 = null;
         for (Shipping s1 : shippings) {
-            if (s1.getIdShipping()==idShipping1) {
+            if (s1.getIdShipping() == idShipping1) {
                 shipping1 = s1;
                 break;
             }
         }
 
 
-        Cart cart=customer.getCart();
-        List<Product> produse=cart.getProducts();
-        Order order=new Order(idOrder,metoda_plata,shipping1,dataLivrare,produse);
+        assert customer != null;
+        Cart cart = customer.getCart();
+        List<Product> produse = cart.getProducts();
+        Order order = new Order(idOrder, metoda_plata, shipping1, dataLivrare, produse);
 //        customer.adaugareComanda(order);
+        String sql = "INSERT INTO order ( idOrder, dataLivrare, produse,metoda_plata,shipping1) VALUES " + " (?,?,?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, idOrder);
+        assert dataLivrare != null;
+        preparedStatement.setString(2, dataLivrare.toString());
+        preparedStatement.setString(3, produse.toString());
+        preparedStatement.setString(4, dataLivrare.toString());
+        assert shipping1 != null;
+        preparedStatement.setString(5, shipping1.toString());
+        preparedStatement.executeUpdate();
+
         orders.add(order);
 
     }
 
-    public static void displayOrder(){
+    public static void displayOrder() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("Dati id-ul comenzii:");
-        int idOrder=0;
+        int idOrder = 0;
         while (true) {
             try {
                 idOrder = Integer.parseInt(scanner.nextLine());
@@ -249,7 +275,7 @@ public class Store {
         }
         Order order1 = null;
         for (Order o1 : orders) {
-            if (o1.getIdOrder()==idOrder) {
+            if (o1.getIdOrder() == idOrder) {
                 order1 = o1;
                 break;
             }
@@ -258,12 +284,12 @@ public class Store {
 
     }
 
-    public static void addCustomer(){
+    public static void addCustomer() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
         System.out.println("Dati id-ul:");
-        int idUser=0;
+        int idUser = 0;
         while (true) {
             try {
                 idUser = Integer.parseInt(scanner.nextLine());
@@ -276,41 +302,49 @@ public class Store {
 
 
         System.out.println("Dati username-ul:");
-        String username=scanner.nextLine();
+        String username = scanner.nextLine();
         System.out.println("Dati parola:");
-        String password=scanner.nextLine();
+        String password = scanner.nextLine();
         System.out.println("Dati emailul:");
-        String email=scanner.nextLine();
+        String email = scanner.nextLine();
         System.out.println("Dati prenumele:");
-        String firstName=scanner.nextLine();
+        String firstName = scanner.nextLine();
         System.out.println("Dati numele:");
-        String lastName=scanner.nextLine();
+        String lastName = scanner.nextLine();
         System.out.println("Dati numarul de telefon:");
-        String phone=scanner.nextLine();
+        String phone = scanner.nextLine();
         System.out.println("Dati adresa");
-        String address=scanner.nextLine();
+        String address = scanner.nextLine();
 
-        Customer client_nou= new Customer(idUser,username,password,email,firstName,lastName,phone,address,new Cart());
+        Customer client_nou = new Customer(idUser, username, password, email, firstName, lastName, phone, address, new Cart());
+        String sql = "INSERT INTO customer ( address, new Cart(), phone) VALUES " + " (?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, address);
+        preparedStatement.setString(2, String.valueOf(new Cart()));
+        preparedStatement.setString(3, phone);
+        preparedStatement.executeUpdate();
+
         customers.add(client_nou);
 
     }
 
-    public static void displayCustomer(){
-        for(Customer customer:customers){
+    public static void displayCustomer() {
+        for (Customer customer : customers) {
             System.out.println(customer);
             System.out.println();
         }
     }
-    public static void addProduct(){
+
+    public static void addProduct() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
 
         System.out.println();
         System.out.println("Dati id-ul:");
-        int id=0;
+        int id = 0;
         while (true) {
             try {
-                id= Integer.parseInt(scanner.nextLine());
+                id = Integer.parseInt(scanner.nextLine());
                 System.out.println("id: " + id);
                 break;
             } catch (NumberFormatException e) {
@@ -318,14 +352,14 @@ public class Store {
             }
         }
         System.out.println("Dati numele produsului:");
-        String name=scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Dati descriera produsului:");
-        String description=scanner.nextLine();
+        String description = scanner.nextLine();
         System.out.println("Dati pretul produsului:");
-        Double price=1.0;
+        Double price = 1.0;
         while (true) {
             try {
-                price= parseDouble(scanner.nextLine());
+                price = parseDouble(scanner.nextLine());
                 System.out.println("price: " + price);
                 break;
             } catch (NumberFormatException e) {
@@ -333,11 +367,11 @@ public class Store {
             }
         }
         System.out.println("Este disponibil produsul? Selectati'true' sau 'false':");
-        Boolean disponibility= Boolean.valueOf(scanner.nextLine());
+        Boolean disponibility = Boolean.valueOf(scanner.nextLine());
         System.out.println("Dati cantitatea produsului:");
-        Integer quantity=Integer.parseInt(scanner.nextLine());
+        Integer quantity = Integer.parseInt(scanner.nextLine());
         System.out.println("Dati numele categoriei:");
-        String name_category=scanner.nextLine();
+        String name_category = scanner.nextLine();
         Category category = null;
         for (Category c : categories) {
             if (c.getName().equalsIgnoreCase(name_category)) {
@@ -349,9 +383,20 @@ public class Store {
             System.out.println("Categoria nu a fost gasita.");
 
         }
-        Product product_nou= new Product(id,name,description,price,disponibility,quantity,category,new HashSet<Rating>());
-        products.add(product_nou);
+        Product product_nou = new Product(id, name, description, price, disponibility, quantity, category, new HashSet<Rating>());
+        String sql = "INSERT INTO product ( id,category,description,disponibility, name, price,quantity,new HashSet<Rating>()) VALUES " + " (?,?,?,?,?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, String.valueOf(category));
+        preparedStatement.setString(3, description);
+        preparedStatement.setBoolean(4, disponibility);
+        preparedStatement.setString(5, name);
+        preparedStatement.setDouble(6, price);
+        preparedStatement.setDouble(7, quantity);
+        preparedStatement.setString(8, String.valueOf(new HashSet<Rating>()));
+        preparedStatement.executeUpdate();
 
+        products.add(product_nou);
 
 
     }
@@ -365,16 +410,15 @@ public class Store {
     }
 
 
-
-    public static void addRating(){
+    public static void addRating() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
 
         System.out.println("Scrieti un comentariu");
-        String comment=scanner.nextLine();
+        String comment = scanner.nextLine();
         System.out.println("Dati numarul de stelute:");
-        int nr=0;
+        int nr = 0;
         while (true) {
             try {
                 nr = Integer.parseInt(scanner.nextLine());
@@ -385,7 +429,7 @@ public class Store {
             }
         }
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -398,7 +442,7 @@ public class Store {
 
         }
         System.out.println("Dati titlul produsului");
-        String name_product=scanner.nextLine();
+        String name_product = scanner.nextLine();
         Product product = null;
         for (Product pr : products) {
             if (pr.getName().equalsIgnoreCase(name_product)) {
@@ -410,17 +454,24 @@ public class Store {
             System.out.println("Produsul nu a fost gasit.");
         }
 
-        Rating rating_nou=new Rating(nr,comment,customer);
+        Rating rating_nou = new Rating(nr, comment, customer);
+        String sql = "INSERT INTO rating ( nr,comment,customer) VALUES " + " (?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, nr);
+        preparedStatement.setString(2, comment);
+        preparedStatement.setString(3, String.valueOf(customer));
+        preparedStatement.executeUpdate();
+
         product.addRatingProduct(rating_nou);
         ratings.add(rating_nou);
     }
 
-    public static void addProductCart(){
+    public static void addProductCart() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -433,7 +484,7 @@ public class Store {
 
         }
         System.out.println("Dati titlul produsului");
-        String name_product=scanner.nextLine();
+        String name_product = scanner.nextLine();
         Product product = null;
         for (Product pr : products) {
             if (pr.getName().equalsIgnoreCase(name_product)) {
@@ -445,17 +496,17 @@ public class Store {
             System.out.println("Produsul nu a fost gasit.");
         }
 
-        Cart cart=customer.getCart();
+        Cart cart = customer.getCart();
         cart.adaugareProdus(product);
 
     }
 
-    public static void deleteProductCart(){
+    public static void deleteProductCart() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -468,7 +519,7 @@ public class Store {
 
         }
         System.out.println("Dati titlul produsului");
-        String name_product=scanner.nextLine();
+        String name_product = scanner.nextLine();
         Product product = null;
         for (Product pr : products) {
             if (pr.getName().equalsIgnoreCase(name_product)) {
@@ -480,17 +531,19 @@ public class Store {
             System.out.println("Produsul nu a fost gasit.");
         }
 
-        Cart cart=customer.getCart();
+        Cart cart = customer.getCart();
         cart.stergeProdus(product);
 
     }
 
-    public static void addCoupon(){
+    static int idcoupon = 1;
+
+    public static void addCoupon() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -504,15 +557,15 @@ public class Store {
         }
 
         System.out.println("Dati codul cuponului:");
-        String code=scanner.nextLine();
+        String code = scanner.nextLine();
         System.out.println("Este valid cuponul?Selectati:'true' sau 'false'");
-        Boolean valid= Boolean.valueOf(scanner.nextLine());
+        Boolean valid = Boolean.valueOf(scanner.nextLine());
         System.out.println("Dati procentul de reducere al cuponului");
 
-        Double percentage=1.0;
+        Double percentage = 1.0;
         while (true) {
             try {
-                percentage= parseDouble(scanner.nextLine());
+                percentage = parseDouble(scanner.nextLine());
                 System.out.println("percentage: " + percentage);
                 break;
             } catch (NumberFormatException e) {
@@ -521,21 +574,29 @@ public class Store {
         }
 
 
-        Coupon cupon_nou= new Coupon(code,percentage,valid);
+        Coupon cupon_nou = new Coupon(code, percentage, valid);
+        idcoupon++;
+        String sql = "INSERT INTO coupon ( idcoupon,code,percentage,valid) VALUES " + " (?,?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, idcoupon);
+        preparedStatement.setString(2, code);
+        preparedStatement.setDouble(3, percentage);
+        preparedStatement.setBoolean(4, valid);
+        preparedStatement.executeUpdate();
+
         coupons.add(cupon_nou);
-        Cart cart=customer.getCart();
+        Cart cart = customer.getCart();
         cart.adaugareCoupon(cupon_nou);
 
 
-
     }
 
-    public static void AplicareReducere(){
+    public static void AplicareReducere() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -549,23 +610,22 @@ public class Store {
         }
 
 
-        Cart cart=customer.getCart();
+        Cart cart = customer.getCart();
 
-        Double suma = cart.Total(cart.getProducts(),cart.getCoupons());
+        Double suma = cart.Total(cart.getProducts(), cart.getCoupons());
 
-        System.out.println("Totalul dupa aplicarea reducerilor este de: "+suma);
+        System.out.println("Totalul dupa aplicarea reducerilor este de: " + suma);
 
 
     }
 
 
-
-    public static void displayCart(){
+    public static void displayCart() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
 
         System.out.println("Dati numele dumneavoastra");
-        String name_customer=scanner.nextLine();
+        String name_customer = scanner.nextLine();
         Customer customer = null;
         for (Customer c1 : customers) {
             if (c1.getLastName().equalsIgnoreCase(name_customer)) {
@@ -577,10 +637,11 @@ public class Store {
             System.out.println("Clientul nu a fost gasit.");
 
         }
-        Cart cart=customer.getCart();
+        Cart cart = customer.getCart();
         System.out.println(cart);
     }
-    public static void productSortare(){
+
+    public static void productSortare() {
         Collections.sort(products, new ProductFilter());
     }
 
