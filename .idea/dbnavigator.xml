@@ -16,7 +16,9 @@
       <console name="BarbieConnection" type="STANDARD" schema="database" session="Main" />
     </connection>
     <connection id="46c78d83-8d09-4d72-ab4b-a908575b667b">
-      <console name="MySQLConnection" type="STANDARD" schema="BarbieShop" session="Main" />
+      <console name="MySQLConnection" type="STANDARD" schema="BarbieShop" session="Main"><![CDATA[select * from cart;
+select* from product;
+select* from category;]]></console>
     </connection>
     <connection id="389e0978-3987-472f-ab96-b1545c78d808">
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
@@ -30,6 +32,12 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="46c78d83-8d09-4d72-ab4b-a908575b667b" dataset="barbieshop.admin" active-filter-id="" />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -777,5 +785,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>

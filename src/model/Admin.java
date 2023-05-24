@@ -3,10 +3,12 @@ import Business.Store;
 
 public final class Admin extends User {
 
-    private final String role;
-    private final String status;
+    private String role;
+    private String status;
 
 
+    public void setRole(String role){this.role=role;}
+    public void setStatus(String status){this.status=status;}
 
     public String getRole() {
         return role;

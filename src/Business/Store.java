@@ -78,15 +78,19 @@ public class Store {
 
     }
 
-    public static void displayCategory() {
-        for (Category category : categories) {
-            System.out.println(category);
-            System.out.println();
+    public static void displayCategory() throws SQLException {
+        String sql = "SELECT idcategory, description, name FROM category;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            Category cat = new Category();
+            cat.setIdCateg(result.getInt("idcategory"));
+            cat.setDescription(result.getString("description"));
+            cat.setName(result.getString("name"));
+            categories.add(cat);
+            System.out.println(cat);
         }
     }
-    //    public void removeCategory(Category category) {
-    //        categories.remove(category);
-    //    }
 
     public static void addAdmin() throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -121,11 +125,18 @@ public class Store {
         admins.add(admin_nou);
     }
 
-    public static void displayAdmin() {
-        for (Admin admin : admins) {
+    public static void displayAdmin() throws SQLException {
+        String sql = "SELECT role, status FROM admin;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            Admin admin = new Admin();
+            admin.setRole(result.getString("role"));
+            admin.setStatus(result.getString("status"));
+            admins.add(admin);
             System.out.println(admin);
-            System.out.println();
         }
+
     }
 
 
@@ -166,10 +177,19 @@ public class Store {
 
     }
 
-    public static void displayShipping() {
-        for (Shipping shipping : shippings) {
-            System.out.println(shipping);
-            System.out.println();
+    public static void displayShipping() throws SQLException {
+        String sql = "SELECT idshipping, address, city, country, postalCode FROM shipping;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            Shipping sh = new Shipping();
+            sh.setIdShipping(result.getInt("idshipping"));
+            sh.setAddress(result.getString("address"));
+            sh.setCity(result.getString("city"));
+            sh.setCountry(result.getString("country"));
+            sh.setPostalCode(result.getString("postalCode"));
+            shippings.add(sh);
+            System.out.println(sh);
         }
     }
 
@@ -317,7 +337,7 @@ public class Store {
         String address = scanner.nextLine();
 
         Customer client_nou = new Customer(idUser, username, password, email, firstName, lastName, phone, address, new Cart());
-        String sql = "INSERT INTO customer ( address, new Cart(), phone) VALUES " + " (?,?,?);";
+        String sql = "INSERT INTO customer ( address, cart, phone) VALUES " + " (?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, address);
         preparedStatement.setString(2, String.valueOf(new Cart()));
@@ -643,6 +663,16 @@ public class Store {
 
     public static void productSortare() {
         Collections.sort(products, new ProductFilter());
+    }
+
+    public static void deleteProduct(Integer id) throws SQLException {
+        String sql = "DELETE FROM product WHERE idproduct = ?;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        int nrrows = statement.executeUpdate();
+        if ( nrrows == 0)
+            System.out.println("Cannot delete product with id " + id);
+        else System.out.println("Delete successful");
     }
 
 //
