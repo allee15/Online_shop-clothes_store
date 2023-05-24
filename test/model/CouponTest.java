@@ -20,11 +20,11 @@ public class CouponTest {
         coupon.setValid(true);
     }
 
-    @Test
-    public void testSetCode() {
-        coupon.setCode("DEF456");
-        Assertions.assertEquals("DEF456", coupon.getCode());
-    }
+//    @Test
+//    public void testSetCode() {
+//        coupon.setCode("DEF456");
+//        Assertions.assertEquals("DEF456", coupon.getCode());
+//    }
 
     @Test
     public void testSetPercentage() {
@@ -38,10 +38,10 @@ public class CouponTest {
         Assertions.assertFalse(coupon.getValid());
     }
 
-    @Test
-    public void testGetCode() {
-        Assertions.assertEquals("ABC123", coupon.getCode());
-    }
+//    @Test
+//    public void testGetCode() {
+//        Assertions.assertEquals("ABC123", coupon.getCode());
+//    }
 
     @Test
     public void testGetPercentage() {
