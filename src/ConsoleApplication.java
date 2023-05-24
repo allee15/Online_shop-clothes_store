@@ -86,6 +86,7 @@ public class ConsoleApplication {
         System.out.println("|                   3. Afiseaza toate produsele din magazin            |");
         System.out.println("|                   4. Afiseaza clientii din magazin                   |");
         System.out.println("|                   5. Afiseaza categoriile                            |");
+        System.out.println("|                   6. Sterge un produs                                |");
         System.out.println("|                   0. EXIT                                            |");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("|                   Ce vei alege? ^^                                   |");
@@ -118,6 +119,13 @@ public class ConsoleApplication {
                 CSVFile("Displaying a category as admin");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
+            case 6:
+                System.out.println("Insert the id for the product you want to remove");
+                Integer id = sc.nextInt();
+                Store.deleteProduct(id);
+                CSVFile("Deleting a product as admin");
+                System.out.println("-----------------------------Done!--------------------------------");
+                break;
             case 0:
                 break;
             default:
@@ -134,16 +142,15 @@ public class ConsoleApplication {
         System.out.println("|                   1. Afiseaza toate produsele din magazin            |");
         System.out.println("|                   2. Adauga un rating                                |");
         System.out.println("|                   3. Adauga un produs in cosul de cumparaturi        |");
-        System.out.println("|                   4. Sterge un produs din cosul de cumparaturi       |");
-        System.out.println("|                   5. Adauga un cupon                                 |");
-        System.out.println("|                   6. Aplicare reducere cupoane                       |");
-        System.out.println("|                   7. Vizualizeaza cosul de cumparaturi               |");
-        System.out.println("|                   8. Adauga adresa de livrare                        |");
-        System.out.println("|                   9. Comanda produsele                               |");
-        System.out.println("|                   10. Afiseaza comanda produselor                    |");
-        System.out.println("|                   11. Afiseaza profil client                         |");
-        System.out.println("|                   12. Afiseaza profil admin                          |");
-        System.out.println("|                   13. Afiseaza categoriile                           |");
+        System.out.println("|                   4. Adauga un cupon                                 |");
+        System.out.println("|                   5. Aplicare reducere cupoane                       |");
+        System.out.println("|                   6. Vizualizeaza cosul de cumparaturi               |");
+        System.out.println("|                   7. Adauga adresa de livrare                        |");
+        System.out.println("|                   8. Comanda produsele                               |");
+        System.out.println("|                   9. Afiseaza comanda produselor                    |");
+        System.out.println("|                   10. Afiseaza profil client                         |");
+        System.out.println("|                   11. Afiseaza profil admin                          |");
+        System.out.println("|                   12. Afiseaza categoriile                           |");
         System.out.println("|                   0. EXIT                                            |");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("|                   Ce vei alege? ^^                                   |");
@@ -167,51 +174,46 @@ public class ConsoleApplication {
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
             case 4:
-                Store.deleteProductCart();
-                CSVFile("Deleting a product from cart as customer");
-                System.out.println("-----------------------------Done!--------------------------------");
-                break;
-            case 5:
                 Store.addCoupon();
                 CSVFile("Adding a coupon as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 6:
+            case 5:
                 Store.AplicareReducere();
                 CSVFile("Using a coupon as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 7:
+            case 6:
                 Store.displayCart();
                 CSVFile("Displayng the cart as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 8:
+            case 7:
                 Store.addShipping();
                 CSVFile("Add a shipping as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 9:
+            case 8:
                 Store.addOrder();
                 CSVFile("Placing an order as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 10:
+            case 9:
                 Store.displayOrder();
                 CSVFile("Displaying order details as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 11:
+            case 10:
                 Store.displayCustomer();
                 CSVFile("Displaying self details as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 12:
+            case 11:
                 Store.displayAdmin();
                 CSVFile("Displaying admin details as customer");
                 System.out.println("-----------------------------Done!--------------------------------");
                 break;
-            case 13:
+            case 12:
                 Store.displayCategory();
                 CSVFile("Displaying a category details as customers");
                 System.out.println("-----------------------------Done!--------------------------------");
